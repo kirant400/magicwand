@@ -1,0 +1,16 @@
+// SourceBoost Linker Call Tree Dump
+
+_startup:"NoSourceFile",line = 0
+{  main:"C:\projects\magicwand\xc8\magicwand.c",line = 62
+  {    delay_s:"NoSourceFile",line = 0
+    {      delay_ms:"NoSourceFile",line = 0
+      {      }      delay_ms:"NoSourceFile",line = 0
+      {      }      delay_ms:"NoSourceFile",line = 0
+      {      }      delay_ms:"NoSourceFile",line = 0
+      {      }    }    delay_s:"NoSourceFile",line = 0
+    {      delay_ms:"NoSourceFile",line = 0
+      {      }      delay_ms:"NoSourceFile",line = 0
+      {      }      delay_ms:"NoSourceFile",line = 0
+      {      }      delay_ms:"NoSourceFile",line = 0
+      {      }    }  }}interrupt:"C:\projects\magicwand\xc8\magicwand.c",line = 105
+{}
