@@ -1,11 +1,12 @@
 __stringtab: STRCODE, 1536 0 18
-_setUpBuffer: CODE, 1914 0 117
-_main: CODE, 1413 0 52
-_ascii2font: CODE, 1335 0 5
-_spread: CODE, 1465 0 71
+_setUpBuffer: CODE, 1397 0 139
+_main: CODE, 1915 0 73
+_ascii2font: CODE, 1286 0 5
+_spread: CODE, 1326 0 71
+_display_length: STRCODE, 1914 0 1
 __initialization: CODE, 2042 0 4
-_run: CODE, 1375 0 38
+_run: CODE, 1988 0 43
 _matrixFont: STRCODE, 1554 0 354
 _message: STRCODE, 1908 0 6
-___wmul: CODE, 1340 0 35
-Total: 700
+___wmul: CODE, 1291 0 35
+Total: 749

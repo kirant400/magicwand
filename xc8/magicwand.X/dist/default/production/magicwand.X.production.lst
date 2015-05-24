@@ -1,1284 +1,1335 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V1.32 build 58300 
-                                                                                               Sun May 17 23:58:09 2015
+                                                                                               Sat May 23 19:23:34 2015
 
 Microchip Technology Omniscient Code Generator (Lite mode) build 58300
      1                           	processor	16F72
      2                           	opt	pw 120
      3                           	opt	lm
      4                           	psect	stringtext,global,reloc=256,class=STRCODE,delta=2
-     5                           	psect	nvCOMMON,global,class=COMMON,space=1,delta=1
-     6                           	psect	cinit,global,class=CODE,merge=1,delta=2
-     7                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
-     8                           	psect	clrtext,global,class=CODE,delta=2
-     9                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
-    10                           	psect	maintext,global,class=CODE,split=1,delta=2
-    11                           	psect	text1,local,class=CODE,merge=1,delta=2
-    12                           	psect	text2,local,class=CODE,merge=1,delta=2
-    13                           	psect	text3,local,class=CODE,merge=1,delta=2
-    14                           	psect	text4,local,class=CODE,merge=1,delta=2
-    15                           	psect	text5,local,class=CODE,merge=1,delta=2
-    16                           	dabs	1,0x7E,2
-    17  0000                     	;# 
-    18  0001                     	;# 
-    19  0002                     	;# 
-    20  0003                     	;# 
-    21  0004                     	;# 
-    22  0005                     	;# 
-    23  0006                     	;# 
-    24  0007                     	;# 
-    25  000A                     	;# 
-    26  000B                     	;# 
-    27  000C                     	;# 
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	clrtext,global,class=CODE,delta=2
+     8                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     9                           	psect	maintext,global,class=CODE,split=1,delta=2
+    10                           	psect	text1,local,class=CODE,merge=1,delta=2
+    11                           	psect	text2,local,class=CODE,merge=1,delta=2
+    12                           	psect	text3,local,class=CODE,merge=1,delta=2
+    13                           	psect	text4,local,class=CODE,merge=1,delta=2
+    14                           	psect	text5,local,class=CODE,merge=1,delta=2
+    15                           	dabs	1,0x7E,2
+    16  0000                     	;# 
+    17  0001                     	;# 
+    18  0002                     	;# 
+    19  0003                     	;# 
+    20  0004                     	;# 
+    21  0005                     	;# 
+    22  0006                     	;# 
+    23  0007                     	;# 
+    24  000A                     	;# 
+    25  000B                     	;# 
+    26  000C                     	;# 
+    27  000E                     	;# 
     28  000E                     	;# 
-    29  000E                     	;# 
-    30  000F                     	;# 
-    31  0010                     	;# 
-    32  0011                     	;# 
-    33  0012                     	;# 
-    34  0013                     	;# 
-    35  0014                     	;# 
+    29  000F                     	;# 
+    30  0010                     	;# 
+    31  0011                     	;# 
+    32  0012                     	;# 
+    33  0013                     	;# 
+    34  0014                     	;# 
+    35  0015                     	;# 
     36  0015                     	;# 
-    37  0015                     	;# 
-    38  0016                     	;# 
-    39  0017                     	;# 
-    40  001E                     	;# 
-    41  001F                     	;# 
-    42  0081                     	;# 
-    43  0085                     	;# 
-    44  0086                     	;# 
-    45  0087                     	;# 
-    46  008C                     	;# 
-    47  008E                     	;# 
-    48  0092                     	;# 
-    49  0093                     	;# 
-    50  0094                     	;# 
-    51  009F                     	;# 
-    52  010C                     	;# 
-    53  010D                     	;# 
-    54  010E                     	;# 
-    55  010F                     	;# 
-    56  018C                     	;# 
-    57                           
-    58                           	psect	stringtext
-    59  0600                     __pstringtext:	
-    60  0600                     stringtab:	
-    61  0600                     __stringtab:	
-    62                           
-    63                           ;	String table - string pointers are 2 bytes each
-    64  0600  1BFF               	btfsc	btemp+1,7
-    65  0601  2E0A               	ljmp	stringcode
-    66  0602  1383               	bcf	3,7
-    67  0603  187F               	btfsc	btemp+1,0
-    68  0604  1783               	bsf	3,7
-    69  0605  0800               	movf	0,w
-    70  0606  0A84               	incf	4,f
-    71  0607  1903               	skipnz
-    72  0608  0AFF               	incf	btemp+1,f
-    73  0609  0008               	return
-    74  060A                     stringcode:	
-    75  060A  087F               	movf	btemp+1,w
-    76  060B  397F               	andlw	127
-    77  060C  008A               	movwf	10
-    78  060D  0804               	movf	4,w
-    79  060E  0A84               	incf	4,f
-    80  060F  1903               	skipnz
-    81  0610  0AFF               	incf	btemp+1,f
-    82  0611  0082               	movwf	2
-    83  0612                     __stringbase:	
-    84  0612                     __end_of__stringtab:	
-    85  0612                     _matrixFont:	
-    86  0612  3400               	retlw	0
-    87  0613  3400               	retlw	0
-    88  0614  3400               	retlw	0
-    89  0615  3400               	retlw	0
-    90  0616  3400               	retlw	0
-    91  0617  3400               	retlw	0
-    92  0618  3400               	retlw	0
-    93  0619  3400               	retlw	0
-    94  061A  3400               	retlw	0
-    95  061B  34FD               	retlw	253
-    96  061C  3400               	retlw	0
-    97  061D  3400               	retlw	0
-    98  061E  3400               	retlw	0
-    99  061F  34FF               	retlw	255
-   100  0620  34FF               	retlw	255
-   101  0621  34FF               	retlw	255
-   102  0622  34FF               	retlw	255
-   103  0623  34FF               	retlw	255
-   104  0624  3400               	retlw	0
-   105  0625  3424               	retlw	36
-   106  0626  34FF               	retlw	255
-   107  0627  3424               	retlw	36
-   108  0628  34FF               	retlw	255
-   109  0629  3424               	retlw	36
-   110  062A  3400               	retlw	0
-   111  062B  3412               	retlw	18
-   112  062C  342A               	retlw	42
-   113  062D  347F               	retlw	127
-   114  062E  342A               	retlw	42
-   115  062F  3424               	retlw	36
-   116  0630  3400               	retlw	0
-   117  0631  34FF               	retlw	255
-   118  0632  34FF               	retlw	255
-   119  0633  34FF               	retlw	255
-   120  0634  34FF               	retlw	255
-   121  0635  34FF               	retlw	255
-   122  0636  3400               	retlw	0
-   123  0637  3476               	retlw	118
-   124  0638  3489               	retlw	137
-   125  0639  3495               	retlw	149
-   126  063A  3462               	retlw	98
-   127  063B  3405               	retlw	5
-   128  063C  3400               	retlw	0
-   129  063D  34FF               	retlw	255
-   130  063E  34FF               	retlw	255
-   131  063F  34FF               	retlw	255
-   132  0640  34FF               	retlw	255
-   133  0641  34FF               	retlw	255
-   134  0642  3400               	retlw	0
-   135  0643  3400               	retlw	0
-   136  0644  343C               	retlw	60
-   137  0645  3442               	retlw	66
-   138  0646  3481               	retlw	129
-   139  0647  3400               	retlw	0
-   140  0648  3400               	retlw	0
-   141  0649  3400               	retlw	0
-   142  064A  3481               	retlw	129
-   143  064B  3442               	retlw	66
-   144  064C  343C               	retlw	60
-   145  064D  3400               	retlw	0
-   146  064E  3400               	retlw	0
-   147  064F  34FF               	retlw	255
-   148  0650  34FF               	retlw	255
-   149  0651  34FF               	retlw	255
-   150  0652  34FF               	retlw	255
-   151  0653  34FF               	retlw	255
-   152  0654  3400               	retlw	0
-   153  0655  3408               	retlw	8
-   154  0656  3408               	retlw	8
-   155  0657  343E               	retlw	62
-   156  0658  3408               	retlw	8
-   157  0659  3408               	retlw	8
-   158  065A  3400               	retlw	0
-   159  065B  34FF               	retlw	255
-   160  065C  34FF               	retlw	255
-   161  065D  34FF               	retlw	255
-   162  065E  34FF               	retlw	255
-   163  065F  34FF               	retlw	255
-   164  0660  3400               	retlw	0
-   165  0661  3408               	retlw	8
-   166  0662  3408               	retlw	8
-   167  0663  3408               	retlw	8
-   168  0664  3408               	retlw	8
-   169  0665  3408               	retlw	8
-   170  0666  3400               	retlw	0
-   171  0667  34FF               	retlw	255
-   172  0668  34FF               	retlw	255
-   173  0669  34FF               	retlw	255
-   174  066A  34FF               	retlw	255
-   175  066B  34FF               	retlw	255
-   176  066C  3400               	retlw	0
-   177  066D  34FF               	retlw	255
-   178  066E  34FF               	retlw	255
-   179  066F  34FF               	retlw	255
-   180  0670  34FF               	retlw	255
-   181  0671  34FF               	retlw	255
-   182  0672  3400               	retlw	0
-   183  0673  347E               	retlw	126
-   184  0674  3489               	retlw	137
-   185  0675  3491               	retlw	145
-   186  0676  34A1               	retlw	161
-   187  0677  347E               	retlw	126
-   188  0678  3400               	retlw	0
-   189  0679  3400               	retlw	0
-   190  067A  3441               	retlw	65
-   191  067B  34FF               	retlw	255
-   192  067C  3401               	retlw	1
-   193  067D  3400               	retlw	0
-   194  067E  3400               	retlw	0
-   195  067F  3443               	retlw	67
-   196  0680  3485               	retlw	133
-   197  0681  3489               	retlw	137
-   198  0682  3491               	retlw	145
-   199  0683  3461               	retlw	97
-   200  0684  3400               	retlw	0
-   201  0685  3442               	retlw	66
-   202  0686  3481               	retlw	129
-   203  0687  3491               	retlw	145
-   204  0688  3491               	retlw	145
-   205  0689  346E               	retlw	110
-   206  068A  3400               	retlw	0
-   207  068B  3418               	retlw	24
-   208  068C  3428               	retlw	40
-   209  068D  3448               	retlw	72
-   210  068E  34FF               	retlw	255
-   211  068F  3408               	retlw	8
-   212  0690  3400               	retlw	0
-   213  0691  34F2               	retlw	242
-   214  0692  3491               	retlw	145
-   215  0693  3491               	retlw	145
-   216  0694  3491               	retlw	145
-   217  0695  348E               	retlw	142
-   218  0696  3400               	retlw	0
-   219  0697  341E               	retlw	30
-   220  0698  3429               	retlw	41
-   221  0699  3449               	retlw	73
-   222  069A  3489               	retlw	137
-   223  069B  3486               	retlw	134
-   224  069C  3400               	retlw	0
-   225  069D  3480               	retlw	128
-   226  069E  348F               	retlw	143
-   227  069F  3490               	retlw	144
-   228  06A0  34A0               	retlw	160
-   229  06A1  34C0               	retlw	192
-   230  06A2  3400               	retlw	0
-   231  06A3  346E               	retlw	110
-   232  06A4  3491               	retlw	145
-   233  06A5  3491               	retlw	145
-   234  06A6  3491               	retlw	145
-   235  06A7  346E               	retlw	110
-   236  06A8  3400               	retlw	0
-   237  06A9  3470               	retlw	112
-   238  06AA  3489               	retlw	137
-   239  06AB  3489               	retlw	137
-   240  06AC  348A               	retlw	138
-   241  06AD  347C               	retlw	124
-   242  06AE  3400               	retlw	0
-   243  06AF  3400               	retlw	0
-   244  06B0  3400               	retlw	0
-   245  06B1  34FD               	retlw	253
-   246  06B2  3400               	retlw	0
-   247  06B3  3400               	retlw	0
-   248  06B4  3400               	retlw	0
-   249  06B5  3444               	retlw	68
-   250  06B6  3402               	retlw	2
-   251  06B7  3412               	retlw	18
-   252  06B8  3402               	retlw	2
-   253  06B9  3444               	retlw	68
-   254  06BA  3400               	retlw	0
-   255  06BB  3408               	retlw	8
-   256  06BC  341C               	retlw	28
-   257  06BD  342A               	retlw	42
-   258  06BE  3408               	retlw	8
-   259  06BF  3408               	retlw	8
-   260  06C0  3400               	retlw	0
-   261  06C1  3414               	retlw	20
-   262  06C2  3414               	retlw	20
-   263  06C3  3414               	retlw	20
-   264  06C4  3414               	retlw	20
-   265  06C5  3414               	retlw	20
-   266  06C6  3400               	retlw	0
-   267  06C7  3410               	retlw	16
-   268  06C8  3410               	retlw	16
-   269  06C9  3454               	retlw	84
-   270  06CA  3438               	retlw	56
-   271  06CB  3410               	retlw	16
-   272  06CC  3400               	retlw	0
-   273  06CD  3460               	retlw	96
-   274  06CE  3480               	retlw	128
-   275  06CF  348D               	retlw	141
-   276  06D0  3490               	retlw	144
-   277  06D1  3460               	retlw	96
-   278  06D2  3400               	retlw	0
-   279  06D3  3466               	retlw	102
-   280  06D4  3489               	retlw	137
-   281  06D5  348F               	retlw	143
-   282  06D6  3481               	retlw	129
-   283  06D7  347E               	retlw	126
-   284  06D8  3400               	retlw	0
-   285  06D9  347F               	retlw	127
-   286  06DA  3488               	retlw	136
-   287  06DB  3488               	retlw	136
-   288  06DC  3488               	retlw	136
-   289  06DD  347F               	retlw	127
-   290  06DE  3400               	retlw	0
-   291  06DF  34FF               	retlw	255
-   292  06E0  3491               	retlw	145
-   293  06E1  3491               	retlw	145
-   294  06E2  3491               	retlw	145
-   295  06E3  346E               	retlw	110
-   296  06E4  3400               	retlw	0
-   297  06E5  347E               	retlw	126
-   298  06E6  3481               	retlw	129
-   299  06E7  3481               	retlw	129
-   300  06E8  3481               	retlw	129
-   301  06E9  3442               	retlw	66
-   302  06EA  3400               	retlw	0
-   303  06EB  34FF               	retlw	255
-   304  06EC  3481               	retlw	129
-   305  06ED  3481               	retlw	129
-   306  06EE  3442               	retlw	66
-   307  06EF  343C               	retlw	60
-   308  06F0  3400               	retlw	0
-   309  06F1  34FF               	retlw	255
-   310  06F2  3491               	retlw	145
-   311  06F3  3491               	retlw	145
-   312  06F4  3491               	retlw	145
-   313  06F5  3481               	retlw	129
-   314  06F6  3400               	retlw	0
-   315  06F7  34FF               	retlw	255
-   316  06F8  3490               	retlw	144
-   317  06F9  3490               	retlw	144
-   318  06FA  3490               	retlw	144
-   319  06FB  3480               	retlw	128
-   320  06FC  3400               	retlw	0
-   321  06FD  347E               	retlw	126
-   322  06FE  3481               	retlw	129
-   323  06FF  3489               	retlw	137
-   324  0700  3489               	retlw	137
-   325  0701  344E               	retlw	78
-   326  0702  3400               	retlw	0
-   327  0703  34FF               	retlw	255
-   328  0704  3410               	retlw	16
-   329  0705  3410               	retlw	16
-   330  0706  3410               	retlw	16
-   331  0707  34FF               	retlw	255
-   332  0708  3400               	retlw	0
-   333  0709  3481               	retlw	129
-   334  070A  3481               	retlw	129
-   335  070B  34FF               	retlw	255
-   336  070C  3481               	retlw	129
-   337  070D  3481               	retlw	129
-   338  070E  3400               	retlw	0
-   339  070F  3406               	retlw	6
-   340  0710  3401               	retlw	1
-   341  0711  3401               	retlw	1
-   342  0712  3401               	retlw	1
-   343  0713  34FE               	retlw	254
-   344  0714  3400               	retlw	0
-   345  0715  34FF               	retlw	255
-   346  0716  3418               	retlw	24
-   347  0717  3424               	retlw	36
-   348  0718  3442               	retlw	66
-   349  0719  3481               	retlw	129
-   350  071A  3400               	retlw	0
-   351  071B  34FF               	retlw	255
-   352  071C  3401               	retlw	1
-   353  071D  3401               	retlw	1
-   354  071E  3401               	retlw	1
-   355  071F  3401               	retlw	1
-   356  0720  3400               	retlw	0
-   357  0721  34FF               	retlw	255
-   358  0722  3440               	retlw	64
-   359  0723  3430               	retlw	48
-   360  0724  3440               	retlw	64
-   361  0725  34FF               	retlw	255
-   362  0726  3400               	retlw	0
-   363  0727  34FF               	retlw	255
-   364  0728  3440               	retlw	64
-   365  0729  3430               	retlw	48
-   366  072A  3408               	retlw	8
-   367  072B  34FF               	retlw	255
-   368  072C  3400               	retlw	0
-   369  072D  347E               	retlw	126
-   370  072E  3481               	retlw	129
-   371  072F  3481               	retlw	129
-   372  0730  3481               	retlw	129
-   373  0731  347E               	retlw	126
-   374  0732  3400               	retlw	0
-   375  0733  34FF               	retlw	255
-   376  0734  3488               	retlw	136
-   377  0735  3488               	retlw	136
-   378  0736  3488               	retlw	136
-   379  0737  3470               	retlw	112
-   380  0738  3400               	retlw	0
-   381  0739  347E               	retlw	126
-   382  073A  3481               	retlw	129
-   383  073B  3485               	retlw	133
-   384  073C  3482               	retlw	130
-   385  073D  347D               	retlw	125
-   386  073E  3400               	retlw	0
-   387  073F  34FF               	retlw	255
-   388  0740  3488               	retlw	136
-   389  0741  348C               	retlw	140
-   390  0742  348A               	retlw	138
-   391  0743  3471               	retlw	113
-   392  0744  3400               	retlw	0
-   393  0745  3461               	retlw	97
-   394  0746  3491               	retlw	145
-   395  0747  3491               	retlw	145
-   396  0748  3491               	retlw	145
-   397  0749  348E               	retlw	142
-   398  074A  3400               	retlw	0
-   399  074B  3480               	retlw	128
-   400  074C  3480               	retlw	128
-   401  074D  34FF               	retlw	255
-   402  074E  3480               	retlw	128
-   403  074F  3480               	retlw	128
-   404  0750  3400               	retlw	0
-   405  0751  34FE               	retlw	254
-   406  0752  3401               	retlw	1
-   407  0753  3401               	retlw	1
-   408  0754  3401               	retlw	1
-   409  0755  34FE               	retlw	254
-   410  0756  3400               	retlw	0
-   411  0757  34F0               	retlw	240
-   412  0758  340C               	retlw	12
-   413  0759  3403               	retlw	3
-   414  075A  340C               	retlw	12
-   415  075B  34F0               	retlw	240
-   416  075C  3400               	retlw	0
-   417  075D  34FF               	retlw	255
-   418  075E  3402               	retlw	2
-   419  075F  340C               	retlw	12
-   420  0760  3402               	retlw	2
-   421  0761  34FF               	retlw	255
-   422  0762  3400               	retlw	0
-   423  0763  34C3               	retlw	195
-   424  0764  3424               	retlw	36
-   425  0765  3418               	retlw	24
-   426  0766  3424               	retlw	36
-   427  0767  34C3               	retlw	195
-   428  0768  3400               	retlw	0
-   429  0769  34E0               	retlw	224
-   430  076A  3410               	retlw	16
-   431  076B  340F               	retlw	15
-   432  076C  3410               	retlw	16
-   433  076D  34E0               	retlw	224
-   434  076E  3400               	retlw	0
-   435  076F  3483               	retlw	131
-   436  0770  3485               	retlw	133
-   437  0771  3499               	retlw	153
-   438  0772  34A1               	retlw	161
-   439  0773  34C1               	retlw	193
-   440  0774                     __end_of_matrixFont:	
-   441  0774                     _message:	
-   442  0774  344B               	retlw	75
-   443  0775  3449               	retlw	73
-   444  0776  3452               	retlw	82
-   445  0777  3441               	retlw	65
-   446  0778  344E               	retlw	78
-   447  0779  3400               	retlw	0
-   448  077A                     __end_of_message:	
-   449                           
-   450                           	psect	nvCOMMON
-   451  007A                     __pnvCOMMON:	
-   452  007A                     _display_length:	
-   453  007A                     	ds	1
-   454  0006                     _PORTB	set	6
-   455  0028                     _RA0	set	40
-   456  009F                     _ADCON1	set	159
-   457  0085                     _TRISA	set	133
-   458  0087                     _TRISC	set	135
-   459                           
-   460                           ; #config settings
-   461  0000                     
-   462                           	psect	cinit
-   463  07FA                     start_initialization:	
-   464  07FA                     __initialization:	
-   465                           
-   466                           ; Clear objects allocated to COMMON
-   467  07FA  3040               	movlw	low __pbssCOMMON
-   468  07FB  0084               	movwf	4
-   469  07FC  305F               	movlw	low (__pbssCOMMON+31)
-   470  07FD  27EF               	fcall	clear_ram0
-   471  07FE                     end_of_initialization:	
-   472                           ;End of C runtime variable initialization code
-   473                           
-   474  07FE                     __end_of__initialization:	
-   475  07FE  0183               	clrf	3
-   476  07FF  2D85               	ljmp	_main	;jump to C main() function
-   477                           
-   478                           	psect	bssCOMMON
-   479  0040                     __pbssCOMMON:	
-   480  0040                     _display_buffer:	
-   481  0040                     	ds	30
-   482  005E                     _buffer_length:	
-   483  005E                     	ds	1
-   484                           
-   485                           	psect	clrtext
-   486  07EF                     clear_ram0:	
-   487                           ;	Called with FSR containing the base address, and
-   488                           ;	W with the last address+1
-   489                           
-   490  07EF  0064               	clrwdt	;clear the watchdog before getting into this loop
-   491  07F0                     clrloop0:	
-   492  07F0  0180               	clrf	0	;clear RAM location pointed to by FSR
-   493  07F1  0A84               	incf	4,f	;increment pointer
-   494  07F2  0604               	xorwf	4,w	;XOR with final address
-   495  07F3  1903               	btfsc	3,2	;have we reached the end yet?
-   496  07F4  3400               	retlw	0	;all done for this memory range, return
-   497  07F5  0604               	xorwf	4,w	;XOR again to restore value
-   498  07F6  2FF0               	goto	clrloop0	;do the next byte
-   499                           
-   500                           	psect	cstackCOMMON
-   501  005F                     __pcstackCOMMON:	
-   502  005F                     ?_setUpBuffer:	
-   503  005F                     ?_run:	
+    37  0016                     	;# 
+    38  0017                     	;# 
+    39  001E                     	;# 
+    40  001F                     	;# 
+    41  0081                     	;# 
+    42  0085                     	;# 
+    43  0086                     	;# 
+    44  0087                     	;# 
+    45  008C                     	;# 
+    46  008E                     	;# 
+    47  0092                     	;# 
+    48  0093                     	;# 
+    49  0094                     	;# 
+    50  009F                     	;# 
+    51  010C                     	;# 
+    52  010D                     	;# 
+    53  010E                     	;# 
+    54  010F                     	;# 
+    55  018C                     	;# 
+    56                           
+    57                           	psect	stringtext
+    58  0600                     __pstringtext:	
+    59  0600                     stringtab:	
+    60  0600                     __stringtab:	
+    61                           
+    62                           ;	String table - string pointers are 2 bytes each
+    63  0600  1BFF               	btfsc	btemp+1,7
+    64  0601  2E0A               	ljmp	stringcode
+    65  0602  1383               	bcf	3,7
+    66  0603  187F               	btfsc	btemp+1,0
+    67  0604  1783               	bsf	3,7
+    68  0605  0800               	movf	0,w
+    69  0606  0A84               	incf	4,f
+    70  0607  1903               	skipnz
+    71  0608  0AFF               	incf	btemp+1,f
+    72  0609  0008               	return
+    73  060A                     stringcode:	
+    74  060A  087F               	movf	btemp+1,w
+    75  060B  397F               	andlw	127
+    76  060C  008A               	movwf	10
+    77  060D  0804               	movf	4,w
+    78  060E  0A84               	incf	4,f
+    79  060F  1903               	skipnz
+    80  0610  0AFF               	incf	btemp+1,f
+    81  0611  0082               	movwf	2
+    82  0612                     __stringbase:	
+    83  0612                     __end_of__stringtab:	
+    84  0612                     _matrixFont:	
+    85  0612  3400               	retlw	0
+    86  0613  3400               	retlw	0
+    87  0614  3400               	retlw	0
+    88  0615  3400               	retlw	0
+    89  0616  3400               	retlw	0
+    90  0617  3400               	retlw	0
+    91  0618  3400               	retlw	0
+    92  0619  3400               	retlw	0
+    93  061A  3400               	retlw	0
+    94  061B  34FD               	retlw	253
+    95  061C  3400               	retlw	0
+    96  061D  3400               	retlw	0
+    97  061E  3400               	retlw	0
+    98  061F  34FF               	retlw	255
+    99  0620  34FF               	retlw	255
+   100  0621  34FF               	retlw	255
+   101  0622  34FF               	retlw	255
+   102  0623  34FF               	retlw	255
+   103  0624  3400               	retlw	0
+   104  0625  3424               	retlw	36
+   105  0626  34FF               	retlw	255
+   106  0627  3424               	retlw	36
+   107  0628  34FF               	retlw	255
+   108  0629  3424               	retlw	36
+   109  062A  3400               	retlw	0
+   110  062B  3412               	retlw	18
+   111  062C  342A               	retlw	42
+   112  062D  347F               	retlw	127
+   113  062E  342A               	retlw	42
+   114  062F  3424               	retlw	36
+   115  0630  3400               	retlw	0
+   116  0631  34FF               	retlw	255
+   117  0632  34FF               	retlw	255
+   118  0633  34FF               	retlw	255
+   119  0634  34FF               	retlw	255
+   120  0635  34FF               	retlw	255
+   121  0636  3400               	retlw	0
+   122  0637  3476               	retlw	118
+   123  0638  3489               	retlw	137
+   124  0639  3495               	retlw	149
+   125  063A  3462               	retlw	98
+   126  063B  3405               	retlw	5
+   127  063C  3400               	retlw	0
+   128  063D  34FF               	retlw	255
+   129  063E  34FF               	retlw	255
+   130  063F  34FF               	retlw	255
+   131  0640  34FF               	retlw	255
+   132  0641  34FF               	retlw	255
+   133  0642  3400               	retlw	0
+   134  0643  3400               	retlw	0
+   135  0644  343C               	retlw	60
+   136  0645  3442               	retlw	66
+   137  0646  3481               	retlw	129
+   138  0647  3400               	retlw	0
+   139  0648  3400               	retlw	0
+   140  0649  3400               	retlw	0
+   141  064A  3481               	retlw	129
+   142  064B  3442               	retlw	66
+   143  064C  343C               	retlw	60
+   144  064D  3400               	retlw	0
+   145  064E  3400               	retlw	0
+   146  064F  34FF               	retlw	255
+   147  0650  34FF               	retlw	255
+   148  0651  34FF               	retlw	255
+   149  0652  34FF               	retlw	255
+   150  0653  34FF               	retlw	255
+   151  0654  3400               	retlw	0
+   152  0655  3408               	retlw	8
+   153  0656  3408               	retlw	8
+   154  0657  343E               	retlw	62
+   155  0658  3408               	retlw	8
+   156  0659  3408               	retlw	8
+   157  065A  3400               	retlw	0
+   158  065B  34FF               	retlw	255
+   159  065C  34FF               	retlw	255
+   160  065D  34FF               	retlw	255
+   161  065E  34FF               	retlw	255
+   162  065F  34FF               	retlw	255
+   163  0660  3400               	retlw	0
+   164  0661  3408               	retlw	8
+   165  0662  3408               	retlw	8
+   166  0663  3408               	retlw	8
+   167  0664  3408               	retlw	8
+   168  0665  3408               	retlw	8
+   169  0666  3400               	retlw	0
+   170  0667  34FF               	retlw	255
+   171  0668  34FF               	retlw	255
+   172  0669  34FF               	retlw	255
+   173  066A  34FF               	retlw	255
+   174  066B  34FF               	retlw	255
+   175  066C  3400               	retlw	0
+   176  066D  34FF               	retlw	255
+   177  066E  34FF               	retlw	255
+   178  066F  34FF               	retlw	255
+   179  0670  34FF               	retlw	255
+   180  0671  34FF               	retlw	255
+   181  0672  3400               	retlw	0
+   182  0673  347E               	retlw	126
+   183  0674  3489               	retlw	137
+   184  0675  3491               	retlw	145
+   185  0676  34A1               	retlw	161
+   186  0677  347E               	retlw	126
+   187  0678  3400               	retlw	0
+   188  0679  3400               	retlw	0
+   189  067A  3441               	retlw	65
+   190  067B  34FF               	retlw	255
+   191  067C  3401               	retlw	1
+   192  067D  3400               	retlw	0
+   193  067E  3400               	retlw	0
+   194  067F  3443               	retlw	67
+   195  0680  3485               	retlw	133
+   196  0681  3489               	retlw	137
+   197  0682  3491               	retlw	145
+   198  0683  3461               	retlw	97
+   199  0684  3400               	retlw	0
+   200  0685  3442               	retlw	66
+   201  0686  3481               	retlw	129
+   202  0687  3491               	retlw	145
+   203  0688  3491               	retlw	145
+   204  0689  346E               	retlw	110
+   205  068A  3400               	retlw	0
+   206  068B  3418               	retlw	24
+   207  068C  3428               	retlw	40
+   208  068D  3448               	retlw	72
+   209  068E  34FF               	retlw	255
+   210  068F  3408               	retlw	8
+   211  0690  3400               	retlw	0
+   212  0691  34F2               	retlw	242
+   213  0692  3491               	retlw	145
+   214  0693  3491               	retlw	145
+   215  0694  3491               	retlw	145
+   216  0695  348E               	retlw	142
+   217  0696  3400               	retlw	0
+   218  0697  341E               	retlw	30
+   219  0698  3429               	retlw	41
+   220  0699  3449               	retlw	73
+   221  069A  3489               	retlw	137
+   222  069B  3486               	retlw	134
+   223  069C  3400               	retlw	0
+   224  069D  3480               	retlw	128
+   225  069E  348F               	retlw	143
+   226  069F  3490               	retlw	144
+   227  06A0  34A0               	retlw	160
+   228  06A1  34C0               	retlw	192
+   229  06A2  3400               	retlw	0
+   230  06A3  346E               	retlw	110
+   231  06A4  3491               	retlw	145
+   232  06A5  3491               	retlw	145
+   233  06A6  3491               	retlw	145
+   234  06A7  346E               	retlw	110
+   235  06A8  3400               	retlw	0
+   236  06A9  3470               	retlw	112
+   237  06AA  3489               	retlw	137
+   238  06AB  3489               	retlw	137
+   239  06AC  348A               	retlw	138
+   240  06AD  347C               	retlw	124
+   241  06AE  3400               	retlw	0
+   242  06AF  3400               	retlw	0
+   243  06B0  3400               	retlw	0
+   244  06B1  34FD               	retlw	253
+   245  06B2  3400               	retlw	0
+   246  06B3  3400               	retlw	0
+   247  06B4  3400               	retlw	0
+   248  06B5  3444               	retlw	68
+   249  06B6  3402               	retlw	2
+   250  06B7  3412               	retlw	18
+   251  06B8  3402               	retlw	2
+   252  06B9  3444               	retlw	68
+   253  06BA  3400               	retlw	0
+   254  06BB  3408               	retlw	8
+   255  06BC  341C               	retlw	28
+   256  06BD  342A               	retlw	42
+   257  06BE  3408               	retlw	8
+   258  06BF  3408               	retlw	8
+   259  06C0  3400               	retlw	0
+   260  06C1  3414               	retlw	20
+   261  06C2  3414               	retlw	20
+   262  06C3  3414               	retlw	20
+   263  06C4  3414               	retlw	20
+   264  06C5  3414               	retlw	20
+   265  06C6  3400               	retlw	0
+   266  06C7  3410               	retlw	16
+   267  06C8  3410               	retlw	16
+   268  06C9  3454               	retlw	84
+   269  06CA  3438               	retlw	56
+   270  06CB  3410               	retlw	16
+   271  06CC  3400               	retlw	0
+   272  06CD  3460               	retlw	96
+   273  06CE  3480               	retlw	128
+   274  06CF  348D               	retlw	141
+   275  06D0  3490               	retlw	144
+   276  06D1  3460               	retlw	96
+   277  06D2  3400               	retlw	0
+   278  06D3  3466               	retlw	102
+   279  06D4  3489               	retlw	137
+   280  06D5  348F               	retlw	143
+   281  06D6  3481               	retlw	129
+   282  06D7  347E               	retlw	126
+   283  06D8  3400               	retlw	0
+   284  06D9  347F               	retlw	127
+   285  06DA  3488               	retlw	136
+   286  06DB  3488               	retlw	136
+   287  06DC  3488               	retlw	136
+   288  06DD  347F               	retlw	127
+   289  06DE  3400               	retlw	0
+   290  06DF  34FF               	retlw	255
+   291  06E0  3491               	retlw	145
+   292  06E1  3491               	retlw	145
+   293  06E2  3491               	retlw	145
+   294  06E3  346E               	retlw	110
+   295  06E4  3400               	retlw	0
+   296  06E5  347E               	retlw	126
+   297  06E6  3481               	retlw	129
+   298  06E7  3481               	retlw	129
+   299  06E8  3481               	retlw	129
+   300  06E9  3442               	retlw	66
+   301  06EA  3400               	retlw	0
+   302  06EB  34FF               	retlw	255
+   303  06EC  3481               	retlw	129
+   304  06ED  3481               	retlw	129
+   305  06EE  3442               	retlw	66
+   306  06EF  343C               	retlw	60
+   307  06F0  3400               	retlw	0
+   308  06F1  34FF               	retlw	255
+   309  06F2  3491               	retlw	145
+   310  06F3  3491               	retlw	145
+   311  06F4  3491               	retlw	145
+   312  06F5  3481               	retlw	129
+   313  06F6  3400               	retlw	0
+   314  06F7  34FF               	retlw	255
+   315  06F8  3490               	retlw	144
+   316  06F9  3490               	retlw	144
+   317  06FA  3490               	retlw	144
+   318  06FB  3480               	retlw	128
+   319  06FC  3400               	retlw	0
+   320  06FD  347E               	retlw	126
+   321  06FE  3481               	retlw	129
+   322  06FF  3489               	retlw	137
+   323  0700  3489               	retlw	137
+   324  0701  344E               	retlw	78
+   325  0702  3400               	retlw	0
+   326  0703  34FF               	retlw	255
+   327  0704  3410               	retlw	16
+   328  0705  3410               	retlw	16
+   329  0706  3410               	retlw	16
+   330  0707  34FF               	retlw	255
+   331  0708  3400               	retlw	0
+   332  0709  3481               	retlw	129
+   333  070A  3481               	retlw	129
+   334  070B  34FF               	retlw	255
+   335  070C  3481               	retlw	129
+   336  070D  3481               	retlw	129
+   337  070E  3400               	retlw	0
+   338  070F  3406               	retlw	6
+   339  0710  3401               	retlw	1
+   340  0711  3401               	retlw	1
+   341  0712  3401               	retlw	1
+   342  0713  34FE               	retlw	254
+   343  0714  3400               	retlw	0
+   344  0715  34FF               	retlw	255
+   345  0716  3418               	retlw	24
+   346  0717  3424               	retlw	36
+   347  0718  3442               	retlw	66
+   348  0719  3481               	retlw	129
+   349  071A  3400               	retlw	0
+   350  071B  34FF               	retlw	255
+   351  071C  3401               	retlw	1
+   352  071D  3401               	retlw	1
+   353  071E  3401               	retlw	1
+   354  071F  3401               	retlw	1
+   355  0720  3400               	retlw	0
+   356  0721  34FF               	retlw	255
+   357  0722  3440               	retlw	64
+   358  0723  3430               	retlw	48
+   359  0724  3440               	retlw	64
+   360  0725  34FF               	retlw	255
+   361  0726  3400               	retlw	0
+   362  0727  34FF               	retlw	255
+   363  0728  3440               	retlw	64
+   364  0729  3430               	retlw	48
+   365  072A  3408               	retlw	8
+   366  072B  34FF               	retlw	255
+   367  072C  3400               	retlw	0
+   368  072D  347E               	retlw	126
+   369  072E  3481               	retlw	129
+   370  072F  3481               	retlw	129
+   371  0730  3481               	retlw	129
+   372  0731  347E               	retlw	126
+   373  0732  3400               	retlw	0
+   374  0733  34FF               	retlw	255
+   375  0734  3488               	retlw	136
+   376  0735  3488               	retlw	136
+   377  0736  3488               	retlw	136
+   378  0737  3470               	retlw	112
+   379  0738  3400               	retlw	0
+   380  0739  347E               	retlw	126
+   381  073A  3481               	retlw	129
+   382  073B  3485               	retlw	133
+   383  073C  3482               	retlw	130
+   384  073D  347D               	retlw	125
+   385  073E  3400               	retlw	0
+   386  073F  34FF               	retlw	255
+   387  0740  3488               	retlw	136
+   388  0741  348C               	retlw	140
+   389  0742  348A               	retlw	138
+   390  0743  3471               	retlw	113
+   391  0744  3400               	retlw	0
+   392  0745  3461               	retlw	97
+   393  0746  3491               	retlw	145
+   394  0747  3491               	retlw	145
+   395  0748  3491               	retlw	145
+   396  0749  348E               	retlw	142
+   397  074A  3400               	retlw	0
+   398  074B  3480               	retlw	128
+   399  074C  3480               	retlw	128
+   400  074D  34FF               	retlw	255
+   401  074E  3480               	retlw	128
+   402  074F  3480               	retlw	128
+   403  0750  3400               	retlw	0
+   404  0751  34FE               	retlw	254
+   405  0752  3401               	retlw	1
+   406  0753  3401               	retlw	1
+   407  0754  3401               	retlw	1
+   408  0755  34FE               	retlw	254
+   409  0756  3400               	retlw	0
+   410  0757  34F0               	retlw	240
+   411  0758  340C               	retlw	12
+   412  0759  3403               	retlw	3
+   413  075A  340C               	retlw	12
+   414  075B  34F0               	retlw	240
+   415  075C  3400               	retlw	0
+   416  075D  34FF               	retlw	255
+   417  075E  3402               	retlw	2
+   418  075F  340C               	retlw	12
+   419  0760  3402               	retlw	2
+   420  0761  34FF               	retlw	255
+   421  0762  3400               	retlw	0
+   422  0763  34C3               	retlw	195
+   423  0764  3424               	retlw	36
+   424  0765  3418               	retlw	24
+   425  0766  3424               	retlw	36
+   426  0767  34C3               	retlw	195
+   427  0768  3400               	retlw	0
+   428  0769  34E0               	retlw	224
+   429  076A  3410               	retlw	16
+   430  076B  340F               	retlw	15
+   431  076C  3410               	retlw	16
+   432  076D  34E0               	retlw	224
+   433  076E  3400               	retlw	0
+   434  076F  3483               	retlw	131
+   435  0770  3485               	retlw	133
+   436  0771  3499               	retlw	153
+   437  0772  34A1               	retlw	161
+   438  0773  34C1               	retlw	193
+   439  0774                     __end_of_matrixFont:	
+   440  0774                     _message:	
+   441  0774  344B               	retlw	75
+   442  0775  3449               	retlw	73
+   443  0776  3452               	retlw	82
+   444  0777  3441               	retlw	65
+   445  0778  344E               	retlw	78
+   446  0779  3400               	retlw	0
+   447  077A                     __end_of_message:	
+   448  077A                     _display_length:	
+   449  077A  3405               	retlw	5
+   450  077B                     __end_of_display_length:	
+   451  0007                     _PORTC	set	7
+   452  0028                     _RA0	set	40
+   453  009F                     _ADCON1	set	159
+   454  0085                     _TRISA	set	133
+   455  0087                     _TRISC	set	135
+   456                           
+   457                           ; #config settings
+   458  0000                     
+   459                           	psect	cinit
+   460  07FA                     start_initialization:	
+   461  07FA                     __initialization:	
+   462                           
+   463                           ; Clear objects allocated to COMMON
+   464  07FA  3040               	movlw	low __pbssCOMMON
+   465  07FB  0084               	movwf	4
+   466  07FC  305F               	movlw	low (__pbssCOMMON+31)
+   467  07FD  27EF               	fcall	clear_ram0
+   468  07FE                     end_of_initialization:	
+   469                           ;End of C runtime variable initialization code
+   470                           
+   471  07FE                     __end_of__initialization:	
+   472  07FE  0183               	clrf	3
+   473  07FF  2F7B               	ljmp	_main	;jump to C main() function
+   474                           
+   475                           	psect	bssCOMMON
+   476  0040                     __pbssCOMMON:	
+   477  0040                     _display_buffer:	
+   478  0040                     	ds	30
+   479  005E                     _buffer_length:	
+   480  005E                     	ds	1
+   481                           
+   482                           	psect	clrtext
+   483  07EF                     clear_ram0:	
+   484                           ;	Called with FSR containing the base address, and
+   485                           ;	W with the last address+1
+   486                           
+   487  07EF  0064               	clrwdt	;clear the watchdog before getting into this loop
+   488  07F0                     clrloop0:	
+   489  07F0  0180               	clrf	0	;clear RAM location pointed to by FSR
+   490  07F1  0A84               	incf	4,f	;increment pointer
+   491  07F2  0604               	xorwf	4,w	;XOR with final address
+   492  07F3  1903               	btfsc	3,2	;have we reached the end yet?
+   493  07F4  3400               	retlw	0	;all done for this memory range, return
+   494  07F5  0604               	xorwf	4,w	;XOR again to restore value
+   495  07F6  2FF0               	goto	clrloop0	;do the next byte
+   496                           
+   497                           	psect	cstackCOMMON
+   498  005F                     __pcstackCOMMON:	
+   499  005F                     ?_setUpBuffer:	
+   500  005F                     ?_run:	
+   501                           ; 0 bytes @ 0x0
+   502                           
+   503  005F                     ??_run:	
    504                           ; 0 bytes @ 0x0
    505                           
-   506  005F                     ??_run:	
+   506  005F                     ??_spread:	
    507                           ; 0 bytes @ 0x0
    508                           
-   509  005F                     ??_spread:	
+   509  005F                     ??_ascii2font:	
    510                           ; 0 bytes @ 0x0
    511                           
-   512  005F                     ??_ascii2font:	
+   512  005F                     ?_spread:	
    513                           ; 0 bytes @ 0x0
    514                           
-   515  005F                     ?_spread:	
-   516                           ; 0 bytes @ 0x0
+   515  005F                     ?_ascii2font:	
+   516                           ; 1 bytes @ 0x0
    517                           
-   518  005F                     ?_ascii2font:	
+   518  005F                     ascii2font@ascii:	
    519                           ; 1 bytes @ 0x0
    520                           
-   521  005F                     ascii2font@ascii:	
+   521                           
    522                           ; 1 bytes @ 0x0
-   523                           
-   524                           
-   525                           ; 1 bytes @ 0x0
-   526  005F                     	ds	1
-   527  0060                     ?___wmul:	
-   528  0060                     ___wmul@multiplier:	
+   523  005F                     	ds	1
+   524  0060                     ?___wmul:	
+   525  0060                     ___wmul@multiplier:	
+   526                           ; 2 bytes @ 0x1
+   527                           
+   528                           
    529                           ; 2 bytes @ 0x1
-   530                           
-   531                           
-   532                           ; 2 bytes @ 0x1
-   533  0060                     	ds	1
-   534  0061                     run@i:	
+   530  0060                     	ds	2
+   531  0062                     run@i:	
+   532  0062                     ___wmul@multiplicand:	
+   533                           ; 2 bytes @ 0x3
+   534                           
    535                           
-   536                           ; 2 bytes @ 0x2
-   537  0061                     	ds	1
-   538  0062                     ___wmul@multiplicand:	
+   536                           ; 2 bytes @ 0x3
+   537  0062                     	ds	1
+   538  0063                     spread@b:	
    539                           
-   540                           ; 2 bytes @ 0x3
-   541  0062                     	ds	1
-   542  0063                     spread@b:	
-   543                           
-   544                           ; 1 bytes @ 0x4
-   545  0063                     	ds	1
-   546  0064                     ??___wmul:	
-   547  0064                     ___wmul@product:	
-   548                           ; 0 bytes @ 0x5
-   549                           
+   540                           ; 1 bytes @ 0x4
+   541  0063                     	ds	1
+   542  0064                     ??___wmul:	
+   543  0064                     ___wmul@product:	
+   544                           ; 0 bytes @ 0x5
+   545                           
+   546                           
+   547                           ; 2 bytes @ 0x5
+   548  0064                     	ds	2
+   549  0066                     ??_setUpBuffer:	
    550                           
-   551                           ; 2 bytes @ 0x5
-   552  0064                     	ds	2
-   553  0066                     ??_setUpBuffer:	
+   551                           ; 0 bytes @ 0x7
+   552  0066                     	ds	7
+   553  006D                     setUpBuffer@j:	
    554                           
-   555                           ; 0 bytes @ 0x7
-   556  0066                     	ds	7
-   557  006D                     setUpBuffer@currentChar:	
+   555                           ; 2 bytes @ 0xE
+   556  006D                     	ds	2
+   557  006F                     setUpBuffer@currentChar:	
    558                           
-   559                           ; 2 bytes @ 0xE
-   560  006D                     	ds	2
-   561  006F                     setUpBuffer@j:	
-   562                           
-   563                           ; 2 bytes @ 0x10
-   564  006F                     	ds	2
-   565  0071                     ?_main:	
-   566  0071                     main@argc:	
-   567                           ; 2 bytes @ 0x12
-   568                           
+   559                           ; 2 bytes @ 0x10
+   560  006F                     	ds	2
+   561  0071                     ?_main:	
+   562  0071                     main@argc:	
+   563                           ; 2 bytes @ 0x12
+   564                           
+   565                           
+   566                           ; 2 bytes @ 0x12
+   567  0071                     	ds	2
+   568  0073                     main@argv:	
    569                           
-   570                           ; 2 bytes @ 0x12
-   571  0071                     	ds	2
-   572  0073                     main@argv:	
+   570                           ; 2 bytes @ 0x14
+   571  0073                     	ds	2
+   572  0075                     ??_main:	
    573                           
-   574                           ; 2 bytes @ 0x14
-   575  0073                     	ds	2
-   576  0075                     ??_main:	
+   574                           ; 0 bytes @ 0x16
+   575  0075                     	ds	3
+   576  0078                     main@last_sensor:	
    577                           
-   578                           ; 0 bytes @ 0x16
-   579  0075                     	ds	3
-   580  0078                     main@last_sensor:	
+   578                           ; 1 bytes @ 0x19
+   579  0078                     	ds	1
+   580  0079                     main@sensor:	
    581                           
-   582                           ; 1 bytes @ 0x19
-   583  0078                     	ds	1
-   584  0079                     main@sensor:	
-   585                           
-   586                           ; 1 bytes @ 0x1A
-   587  0079                     	ds	1
-   588                           
-   589                           	psect	maintext
-   590  0585                     __pmaintext:	
-   591 ;;
-   592 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
-   593 ;;
-   594 ;; *************** function _main *****************
-   595 ;; Defined at:
-   596 ;;		line 40 in file "magicwandmain.c"
-   597 ;; Parameters:    Size  Location     Type
-   598 ;;  argc            2   18[COMMON] int 
-   599 ;;  argv            2   20[COMMON] PTR PTR unsigned char 
-   600 ;; Auto vars:     Size  Location     Type
-   601 ;;  sensor          1   26[COMMON] unsigned char 
-   602 ;;  last_sensor     1   25[COMMON] unsigned char 
-   603 ;; Return value:  Size  Location     Type
-   604 ;;                  2   18[COMMON] int 
-   605 ;; Registers used:
-   606 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
-   607 ;; Tracked objects:
-   608 ;;		On entry : 17F/0
-   609 ;;		On exit  : 0/0
-   610 ;;		Unchanged: 0/0
-   611 ;; Data sizes:     COMMON   BANK0   BANK1
-   612 ;;      Params:         4       0       0
-   613 ;;      Locals:         2       0       0
-   614 ;;      Temps:          3       0       0
-   615 ;;      Totals:         9       0       0
-   616 ;;Total ram usage:        9 bytes
-   617 ;; Hardware stack levels required when called:    2
-   618 ;; This function calls:
-   619 ;;		_run
-   620 ;;		_setUpBuffer
-   621 ;; This function is called by:
-   622 ;;		Startup code after reset
-   623 ;; This function uses a non-reentrant model
-   624 ;;
+   582                           ; 1 bytes @ 0x1A
+   583  0079                     	ds	1
+   584                           
+   585                           	psect	maintext
+   586  077B                     __pmaintext:	
+   587 ;;
+   588 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
+   589 ;;
+   590 ;; *************** function _main *****************
+   591 ;; Defined at:
+   592 ;;		line 40 in file "magicwandmain.c"
+   593 ;; Parameters:    Size  Location     Type
+   594 ;;  argc            2   18[COMMON] int 
+   595 ;;  argv            2   20[COMMON] PTR PTR unsigned char 
+   596 ;; Auto vars:     Size  Location     Type
+   597 ;;  sensor          1   26[COMMON] unsigned char 
+   598 ;;  last_sensor     1   25[COMMON] unsigned char 
+   599 ;; Return value:  Size  Location     Type
+   600 ;;                  2   18[COMMON] int 
+   601 ;; Registers used:
+   602 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   603 ;; Tracked objects:
+   604 ;;		On entry : 17F/0
+   605 ;;		On exit  : 0/0
+   606 ;;		Unchanged: 0/0
+   607 ;; Data sizes:     COMMON   BANK0   BANK1
+   608 ;;      Params:         4       0       0
+   609 ;;      Locals:         2       0       0
+   610 ;;      Temps:          3       0       0
+   611 ;;      Totals:         9       0       0
+   612 ;;Total ram usage:        9 bytes
+   613 ;; Hardware stack levels required when called:    2
+   614 ;; This function calls:
+   615 ;;		_run
+   616 ;;		_setUpBuffer
+   617 ;; This function is called by:
+   618 ;;		Startup code after reset
+   619 ;; This function uses a non-reentrant model
+   620 ;;
+   621                           
+   622                           
+   623                           ;psect for function _main
+   624  077B                     _main:	
    625                           
-   626                           
-   627                           ;psect for function _main
-   628  0585                     _main:	
-   629                           
-   630                           ;magicwandmain.c: 41: uint8_t sensor, last_sensor;
-   631                           ;magicwandmain.c: 42: ADCON1 =0x06;
-   632                           
-   633                           ;incstack = 0
-   634                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
-   635  0585  3006               	movlw	6
-   636  0586  1683               	bsf	3,5	;RP0=1, select bank1
-   637  0587  1303               	bcf	3,6	;RP1=0, select bank1
-   638  0588  009F               	movwf	31	;volatile
+   626                           ;magicwandmain.c: 41: uint8_t sensor, last_sensor;
+   627                           ;magicwandmain.c: 42: ADCON1 =0x06;
+   628                           
+   629                           ;incstack = 0
+   630                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   631  077B  3006               	movlw	6
+   632  077C  1683               	bsf	3,5	;RP0=1, select bank1
+   633  077D  1303               	bcf	3,6	;RP1=0, select bank1
+   634  077E  009F               	movwf	31	;volatile
+   635                           
+   636                           ;magicwandmain.c: 43: TRISA = 0xFF;
+   637  077F  30FF               	movlw	255
+   638  0780  0085               	movwf	5	;volatile
    639                           
-   640                           ;magicwandmain.c: 43: TRISA = 0xFF;
-   641  0589  30FF               	movlw	255
-   642  058A  0085               	movwf	5	;volatile
-   643                           
-   644                           ;magicwandmain.c: 45: TRISC = 0x00;
-   645  058B  0187               	clrf	7	;volatile
-   646                           
-   647                           ;magicwandmain.c: 46: setUpBuffer();
-   648  058C  277A               	fcall	_setUpBuffer
-   649                           
-   650                           ;magicwandmain.c: 47: sensor = RA0 & 1;
-   651  058D  3000               	movlw	0
-   652  058E  1283               	bcf	3,5	;RP0=0, select bank0
-   653  058F  1303               	bcf	3,6	;RP1=0, select bank0
-   654  0590  1805               	btfsc	5,0	;volatile
-   655  0591  3001               	movlw	1
-   656  0592  3901               	andlw	1
-   657  0593  00F5               	movwf	??_main
-   658  0594  0875               	movf	??_main,w
-   659  0595  00F9               	movwf	main@sensor
-   660  0596                     L1:	
-   661                           
-   662                           ;magicwandmain.c: 48: last_sensor = sensor;
-   663  0596  0879               	movf	main@sensor,w
-   664  0597  00F5               	movwf	??_main
-   665  0598  0875               	movf	??_main,w
-   666  0599  00F8               	movwf	main@last_sensor
-   667                           
-   668                           ;magicwandmain.c: 50: {
-   669                           ;magicwandmain.c: 51: sensor = RA0 & 1;
-   670                           
-   671                           ;magicwandmain.c: 49: while(1)
-   672  059A  3000               	movlw	0
-   673  059B  1283               	bcf	3,5	;RP0=0, select bank0
-   674  059C  1303               	bcf	3,6	;RP1=0, select bank0
-   675  059D  1805               	btfsc	5,0	;volatile
-   676  059E  3001               	movlw	1
-   677  059F  3901               	andlw	1
-   678  05A0  00F5               	movwf	??_main
-   679  05A1  0875               	movf	??_main,w
-   680  05A2  00F9               	movwf	main@sensor
+   640                           ;magicwandmain.c: 45: TRISC = 0x00;
+   641  0781  0187               	clrf	7	;volatile
+   642                           
+   643                           ;magicwandmain.c: 46: setUpBuffer();
+   644  0782  2575               	fcall	_setUpBuffer
+   645                           
+   646                           ;magicwandmain.c: 47: sensor = RA0 & 1;
+   647  0783  3000               	movlw	0
+   648  0784  1283               	bcf	3,5	;RP0=0, select bank0
+   649  0785  1303               	bcf	3,6	;RP1=0, select bank0
+   650  0786  1805               	btfsc	5,0	;volatile
+   651  0787  3001               	movlw	1
+   652  0788  3901               	andlw	1
+   653  0789  00F5               	movwf	??_main
+   654  078A  0875               	movf	??_main,w
+   655  078B  00F9               	movwf	main@sensor
+   656                           
+   657                           ;magicwandmain.c: 48: last_sensor = sensor;
+   658  078C  0879               	movf	main@sensor,w
+   659  078D  00F5               	movwf	??_main
+   660  078E  0875               	movf	??_main,w
+   661  078F  00F8               	movwf	main@last_sensor
+   662                           
+   663                           ;magicwandmain.c: 49: PORTC = 0xFF;
+   664  0790  30FF               	movlw	255
+   665  0791  0087               	movwf	7	;volatile
+   666                           
+   667                           ;magicwandmain.c: 50: _delay((unsigned long)((999)*(8000000/4000.0)));
+   668  0792  300B               	movlw	11
+   669  0793  00F7               	movwf	??_main+2
+   670  0794  3023               	movlw	35
+   671  0795  00F6               	movwf	??_main+1
+   672  0796  30CE               	movlw	206
+   673  0797  00F5               	movwf	??_main
+   674  0798                     u177:	
+   675  0798  0BF5               	decfsz	??_main,f
+   676  0799  2F98               	goto	u177
+   677  079A  0BF6               	decfsz	??_main+1,f
+   678  079B  2F98               	goto	u177
+   679  079C  0BF7               	decfsz	??_main+2,f
+   680  079D  2F98               	goto	u177
    681                           
-   682                           ;magicwandmain.c: 52: if( (sensor != last_sensor) && sensor == 0 ){
-   683  05A3  0879               	movf	main@sensor,w
-   684  05A4  0678               	xorwf	main@last_sensor,w
-   685  05A5  1903               	skipnz
-   686  05A6  2D96               	goto	L1
-   687  05A7  08F9               	movf	main@sensor,f
-   688  05A8  1D03               	skipz
-   689  05A9  2D96               	goto	L1
-   690                           
-   691                           ;magicwandmain.c: 53: _delay((unsigned long)((160)*(8000000/4000.0)));
-   692  05AA  3002               	movlw	2
-   693  05AB  00F7               	movwf	??_main+2
-   694  05AC  30A0               	movlw	160
-   695  05AD  00F6               	movwf	??_main+1
-   696  05AE  3092               	movlw	146
-   697  05AF  00F5               	movwf	??_main
-   698  05B0                     u167:	
-   699  05B0  0BF5               	decfsz	??_main,f
-   700  05B1  2DB0               	goto	u167
-   701  05B2  0BF6               	decfsz	??_main+1,f
-   702  05B3  2DB0               	goto	u167
-   703  05B4  0BF7               	decfsz	??_main+2,f
-   704  05B5  2DB0               	goto	u167
-   705  05B6  0000               	nop
-   706                           
-   707                           ;magicwandmain.c: 54: run();
-   708  05B7  255F               	fcall	_run
-   709  05B8  2D96               	goto	L1
-   710  05B9                     __end_of_main:	
-   711                           ;magicwandmain.c: 57: }
-   712                           ;magicwandmain.c: 58: return (0);
-   713                           ;	Return value of _main is never used
-   714                           
-   715                           ;magicwandmain.c: 55: }
-   716                           ;magicwandmain.c: 56: last_sensor = sensor;
-   717                           
-   718                           
-   719                           	psect	text1
-   720  077A                     __ptext1:	
-   721 ;; *************** function _setUpBuffer *****************
-   722 ;; Defined at:
-   723 ;;		line 64 in file "magicwandmain.c"
-   724 ;; Parameters:    Size  Location     Type
-   725 ;;		None
-   726 ;; Auto vars:     Size  Location     Type
-   727 ;;  j               2   16[COMMON] int 
-   728 ;;  currentChar     2   14[COMMON] int 
-   729 ;; Return value:  Size  Location     Type
-   730 ;;		None               void
-   731 ;; Registers used:
-   732 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
-   733 ;; Tracked objects:
-   734 ;;		On entry : 0/0
-   735 ;;		On exit  : 0/0
-   736 ;;		Unchanged: 0/0
-   737 ;; Data sizes:     COMMON   BANK0   BANK1
-   738 ;;      Params:         0       0       0
-   739 ;;      Locals:         4       0       0
-   740 ;;      Temps:          7       0       0
-   741 ;;      Totals:        11       0       0
-   742 ;;Total ram usage:       11 bytes
-   743 ;; Hardware stack levels used:    1
-   744 ;; Hardware stack levels required when called:    1
-   745 ;; This function calls:
-   746 ;;		___wmul
-   747 ;;		_ascii2font
-   748 ;;		_spread
-   749 ;; This function is called by:
-   750 ;;		_main
-   751 ;; This function uses a non-reentrant model
-   752 ;;
-   753                           
-   754                           
-   755                           ;psect for function _setUpBuffer
-   756  077A                     _setUpBuffer:	
-   757                           
-   758                           ;magicwandmain.c: 65: int j, currentChar=0;
-   759                           
-   760                           ;incstack = 0
-   761                           ; Regs used in _setUpBuffer: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
-   762  077A  01ED               	clrf	setUpBuffer@currentChar
-   763  077B  01EE               	clrf	setUpBuffer@currentChar+1
-   764                           
-   765                           ;magicwandmain.c: 66: display_length = sizeof(message)-1;
-   766  077C  3005               	movlw	5
-   767  077D  00E6               	movwf	??_setUpBuffer
-   768  077E  0866               	movf	??_setUpBuffer,w
-   769  077F  00FA               	movwf	_display_length
-   770                           
-   771                           ;magicwandmain.c: 67: for(currentChar=0; currentChar<display_length; currentChar++) {
-   772  0780  01ED               	clrf	setUpBuffer@currentChar
-   773  0781  01EE               	clrf	setUpBuffer@currentChar+1
-   774  0782                     l40:	
-   775  0782  086E               	movf	setUpBuffer@currentChar+1,w
-   776  0783  3A80               	xorlw	128
-   777  0784  00E6               	movwf	??_setUpBuffer
-   778  0785  3080               	movlw	128
-   779  0786  0266               	subwf	??_setUpBuffer,w
-   780  0787  1D03               	skipz
-   781  0788  2F8B               	goto	u125
-   782  0789  087A               	movf	_display_length,w
-   783  078A  026D               	subwf	setUpBuffer@currentChar,w
-   784  078B                     u125:	
-   785  078B  1803               	btfsc	3,0
-   786  078C  2FEA               	goto	l474
-   787                           
-   788                           ;magicwandmain.c: 69: for(j=0; j<6; j++) {
-   789  078D  01EF               	clrf	setUpBuffer@j
-   790  078E  01F0               	clrf	setUpBuffer@j+1
-   791  078F  0870               	movf	setUpBuffer@j+1,w
-   792  0790  3A80               	xorlw	128
-   793  0791  00FF               	movwf	127
-   794  0792  3080               	movlw	128
-   795  0793  027F               	subwf	127,w
-   796  0794  1D03               	skipz
-   797  0795  2F98               	goto	u105
-   798  0796  3006               	movlw	6
-   799  0797  026F               	subwf	setUpBuffer@j,w
-   800  0798                     u105:	
-   801  0798  1803               	btfsc	3,0
-   802  0799  2FE3               	goto	l472
-   803  079A                     l464:	
-   804                           
-   805                           ;magicwandmain.c: 70: display_buffer[buffer_length] = spread(matrixFont[ascii2font(messa
+   682                           ;magicwandmain.c: 51: PORTC = 0x00;
+   683  079E  1283               	bcf	3,5	;RP0=0, select bank0
+   684  079F  1303               	bcf	3,6	;RP1=0, select bank0
+   685  07A0  0187               	clrf	7	;volatile
+   686  07A1                     l505:	
+   687                           ;magicwandmain.c: 52: while(1)
+   688                           
+   689                           
+   690                           ;magicwandmain.c: 53: {
+   691                           ;magicwandmain.c: 54: sensor = RA0 & 1;
+   692  07A1  3000               	movlw	0
+   693  07A2  1283               	bcf	3,5	;RP0=0, select bank0
+   694  07A3  1303               	bcf	3,6	;RP1=0, select bank0
+   695  07A4  1805               	btfsc	5,0	;volatile
+   696  07A5  3001               	movlw	1
+   697  07A6  3901               	andlw	1
+   698  07A7  00F5               	movwf	??_main
+   699  07A8  0875               	movf	??_main,w
+   700  07A9  00F9               	movwf	main@sensor
+   701                           
+   702                           ;magicwandmain.c: 55: if( (sensor != last_sensor) && sensor == 0 ){
+   703  07AA  0879               	movf	main@sensor,w
+   704  07AB  0678               	xorwf	main@last_sensor,w
+   705  07AC  1903               	skipnz
+   706  07AD  2FBF               	goto	l515
+   707  07AE  08F9               	movf	main@sensor,f
+   708  07AF  1D03               	skipz
+   709  07B0  2FBF               	goto	l515
+   710                           
+   711                           ;magicwandmain.c: 56: _delay((unsigned long)((100)*(8000000/4000.0)));
+   712  07B1  3002               	movlw	2
+   713  07B2  00F7               	movwf	??_main+2
+   714  07B3  3004               	movlw	4
+   715  07B4  00F6               	movwf	??_main+1
+   716  07B5  30BA               	movlw	186
+   717  07B6  00F5               	movwf	??_main
+   718  07B7                     u187:	
+   719  07B7  0BF5               	decfsz	??_main,f
+   720  07B8  2FB7               	goto	u187
+   721  07B9  0BF6               	decfsz	??_main+1,f
+   722  07BA  2FB7               	goto	u187
+   723  07BB  0BF7               	decfsz	??_main+2,f
+   724  07BC  2FB7               	goto	u187
+   725  07BD  0000               	nop
+   726                           
+   727                           ;magicwandmain.c: 57: run();
+   728  07BE  27C4               	fcall	_run
+   729  07BF                     l515:	
+   730                           
+   731                           ;magicwandmain.c: 58: }
+   732                           ;magicwandmain.c: 59: last_sensor = sensor;
+   733  07BF  0879               	movf	main@sensor,w
+   734  07C0  00F5               	movwf	??_main
+   735  07C1  0875               	movf	??_main,w
+   736  07C2  00F8               	movwf	main@last_sensor
+   737  07C3  2FA1               	goto	l505
+   738  07C4                     __end_of_main:	
+   739                           ;magicwandmain.c: 66: }
+   740                           ;magicwandmain.c: 67: return (0);
+   741                           ;	Return value of _main is never used
+   742                           
+   743                           
+   744                           	psect	text1
+   745  0575                     __ptext1:	
+   746 ;; *************** function _setUpBuffer *****************
+   747 ;; Defined at:
+   748 ;;		line 73 in file "magicwandmain.c"
+   749 ;; Parameters:    Size  Location     Type
+   750 ;;		None
+   751 ;; Auto vars:     Size  Location     Type
+   752 ;;  currentChar     2   16[COMMON] int 
+   753 ;;  j               2   14[COMMON] int 
+   754 ;; Return value:  Size  Location     Type
+   755 ;;		None               void
+   756 ;; Registers used:
+   757 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   758 ;; Tracked objects:
+   759 ;;		On entry : 0/0
+   760 ;;		On exit  : 0/0
+   761 ;;		Unchanged: 0/0
+   762 ;; Data sizes:     COMMON   BANK0   BANK1
+   763 ;;      Params:         0       0       0
+   764 ;;      Locals:         4       0       0
+   765 ;;      Temps:          7       0       0
+   766 ;;      Totals:        11       0       0
+   767 ;;Total ram usage:       11 bytes
+   768 ;; Hardware stack levels used:    1
+   769 ;; Hardware stack levels required when called:    1
+   770 ;; This function calls:
+   771 ;;		___wmul
+   772 ;;		_ascii2font
+   773 ;;		_spread
+   774 ;; This function is called by:
+   775 ;;		_main
+   776 ;; This function uses a non-reentrant model
+   777 ;;
+   778                           
+   779                           
+   780                           ;psect for function _setUpBuffer
+   781  0575                     _setUpBuffer:	
+   782                           
+   783                           ;magicwandmain.c: 74: int j, currentChar=0;
+   784                           
+   785                           ;incstack = 0
+   786                           ; Regs used in _setUpBuffer: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   787  0575  01EF               	clrf	setUpBuffer@currentChar
+   788  0576  01F0               	clrf	setUpBuffer@currentChar+1
+   789                           
+   790                           ;magicwandmain.c: 75: for(currentChar=0; currentChar<display_length; currentChar++) {
+   791  0577  01EF               	clrf	setUpBuffer@currentChar
+   792  0578  01F0               	clrf	setUpBuffer@currentChar+1
+   793  0579  307A               	movlw	low (_display_length| (0+32768))
+   794  057A  0084               	movwf	4
+   795  057B  3087               	movlw	high (_display_length| (0+32768))
+   796  057C  1283               	bcf	3,5	;RP0=0, select bank0
+   797  057D  1303               	bcf	3,6	;RP1=0, select bank0
+   798  057E  00FF               	movwf	127
+   799  057F  2600               	fcall	stringtab
+   800  0580  00E6               	movwf	??_setUpBuffer
+   801  0581  0870               	movf	setUpBuffer@currentChar+1,w
+   802  0582  3A80               	xorlw	128
+   803  0583  00E7               	movwf	??_setUpBuffer+1
+   804  0584  3080               	movlw	128
+   805  0585  0267               	subwf	??_setUpBuffer+1,w
+   806  0586  1D03               	skipz
+   807  0587  2D8A               	goto	u105
+   808  0588  0866               	movf	??_setUpBuffer,w
+   809  0589  026F               	subwf	setUpBuffer@currentChar,w
+   810  058A                     u105:	
+   811  058A  1803               	btfsc	3,0
+   812  058B  2DFB               	goto	l475
+   813  058C                     l457:	
+   814                           
+   815                           ;magicwandmain.c: 77: for(j=0; j<6; j++) {
+   816  058C  01ED               	clrf	setUpBuffer@j
+   817  058D  01EE               	clrf	setUpBuffer@j+1
+   818  058E  086E               	movf	setUpBuffer@j+1,w
+   819  058F  3A80               	xorlw	128
+   820  0590  00FF               	movwf	127
+   821  0591  3080               	movlw	128
+   822  0592  027F               	subwf	127,w
+   823  0593  1D03               	skipz
+   824  0594  2D97               	goto	u115
+   825  0595  3006               	movlw	6
+   826  0596  026D               	subwf	setUpBuffer@j,w
+   827  0597                     u115:	
+   828  0597  1803               	btfsc	3,0
+   829  0598  2DE2               	goto	l471
+   830  0599                     l463:	
+   831                           
+   832                           ;magicwandmain.c: 78: display_buffer[buffer_length] = spread(matrixFont[ascii2font(messa
       +                          ge[currentChar])][j]);
-   806  079A  086D               	movf	setUpBuffer@currentChar,w
-   807  079B  3E74               	addlw	low (_message| (0+32768))
-   808  079C  0084               	movwf	4
-   809  079D  3087               	movlw	high (_message| (0+32768))
-   810  079E  1803               	skipnc
-   811  079F  3E01               	addlw	1
-   812  07A0  1283               	bcf	3,5	;RP0=0, select bank0
-   813  07A1  1303               	bcf	3,6	;RP1=0, select bank0
-   814  07A2  00FF               	movwf	127
-   815  07A3  2600               	fcall	stringtab
-   816  07A4  2537               	fcall	_ascii2font
-   817  07A5  00E6               	movwf	??_setUpBuffer
-   818  07A6  01E7               	clrf	??_setUpBuffer+1
-   819  07A7  0866               	movf	??_setUpBuffer,w
-   820  07A8  00E0               	movwf	___wmul@multiplier
-   821  07A9  0867               	movf	??_setUpBuffer+1,w
-   822  07AA  00E1               	movwf	___wmul@multiplier+1
-   823  07AB  3006               	movlw	6
-   824  07AC  00E2               	movwf	___wmul@multiplicand
-   825  07AD  3000               	movlw	0
-   826  07AE  00E3               	movwf	___wmul@multiplicand+1
-   827  07AF  253C               	fcall	___wmul
-   828  07B0  3012               	movlw	low (_matrixFont| (0+32768))
-   829  07B1  00E8               	movwf	??_setUpBuffer+2
-   830  07B2  3086               	movlw	high (_matrixFont| (0+32768))
-   831  07B3  00E9               	movwf	??_setUpBuffer+3
-   832  07B4  0860               	movf	?___wmul,w
-   833  07B5  0768               	addwf	??_setUpBuffer+2,w
-   834  07B6  00EA               	movwf	??_setUpBuffer+4
-   835  07B7  0861               	movf	?___wmul+1,w
-   836  07B8  1803               	skipnc
-   837  07B9  0A61               	incf	?___wmul+1,w
-   838  07BA  0769               	addwf	??_setUpBuffer+3,w
-   839  07BB  00EB               	movwf	??_setUpBuffer+5
-   840  07BC  086F               	movf	setUpBuffer@j,w
-   841  07BD  076A               	addwf	??_setUpBuffer+4,w
-   842  07BE  0084               	movwf	4
-   843  07BF  0870               	movf	setUpBuffer@j+1,w
-   844  07C0  1803               	skipnc
-   845  07C1  0A70               	incf	setUpBuffer@j+1,w
-   846  07C2  076B               	addwf	??_setUpBuffer+5,w
-   847  07C3  1283               	bcf	3,5	;RP0=0, select bank0
-   848  07C4  1303               	bcf	3,6	;RP1=0, select bank0
-   849  07C5  00FF               	movwf	127
-   850  07C6  2600               	fcall	stringtab
-   851  07C7  25B9               	fcall	_spread
-   852  07C8  00EC               	movwf	??_setUpBuffer+6
-   853  07C9  085E               	movf	_buffer_length,w
-   854  07CA  3E40               	addlw	_display_buffer& (0+255)
-   855  07CB  0084               	movwf	4
-   856  07CC  086C               	movf	??_setUpBuffer+6,w
-   857  07CD  0080               	movwf	0
-   858                           
-   859                           ;magicwandmain.c: 71: buffer_length++;
-   860  07CE  3001               	movlw	1
-   861  07CF  00E6               	movwf	??_setUpBuffer
-   862  07D0  0866               	movf	??_setUpBuffer,w
-   863  07D1  07DE               	addwf	_buffer_length,f
-   864  07D2  3001               	movlw	1
-   865  07D3  07EF               	addwf	setUpBuffer@j,f
-   866  07D4  1803               	skipnc
-   867  07D5  0AF0               	incf	setUpBuffer@j+1,f
-   868  07D6  3000               	movlw	0
-   869  07D7  07F0               	addwf	setUpBuffer@j+1,f
-   870  07D8  0870               	movf	setUpBuffer@j+1,w
-   871  07D9  3A80               	xorlw	128
-   872  07DA  00FF               	movwf	127
-   873  07DB  3080               	movlw	128
-   874  07DC  027F               	subwf	127,w
-   875  07DD  1D03               	skipz
-   876  07DE  2FE1               	goto	u115
-   877  07DF  3006               	movlw	6
-   878  07E0  026F               	subwf	setUpBuffer@j,w
-   879  07E1                     u115:	
-   880  07E1  1C03               	skipc
-   881  07E2  2F9A               	goto	l464
-   882  07E3                     l472:	
-   883  07E3  3001               	movlw	1
-   884  07E4  07ED               	addwf	setUpBuffer@currentChar,f
-   885  07E5  1803               	skipnc
-   886  07E6  0AEE               	incf	setUpBuffer@currentChar+1,f
-   887  07E7  3000               	movlw	0
-   888  07E8  07EE               	addwf	setUpBuffer@currentChar+1,f
-   889  07E9  2F82               	goto	l40
-   890  07EA                     l474:	
-   891                           
-   892                           ;magicwandmain.c: 72: }
-   893                           ;magicwandmain.c: 73: }
-   894                           ;magicwandmain.c: 74: display_buffer[buffer_length] = 0;
-   895  07EA  085E               	movf	_buffer_length,w
-   896  07EB  3E40               	addlw	_display_buffer& (0+255)
-   897  07EC  0084               	movwf	4
-   898  07ED  0180               	clrf	0
-   899  07EE  0008               	return
-   900  07EF                     __end_of_setUpBuffer:	
-   901                           
-   902                           	psect	text2
-   903  05B9                     __ptext2:	
-   904 ;; *************** function _spread *****************
-   905 ;; Defined at:
-   906 ;;		line 81 in file "magicwandmain.c"
-   907 ;; Parameters:    Size  Location     Type
-   908 ;;  b               1    wreg     unsigned char 
-   909 ;; Auto vars:     Size  Location     Type
-   910 ;;  b               1    4[COMMON] unsigned char 
-   911 ;; Return value:  Size  Location     Type
-   912 ;;                  1    wreg      unsigned char 
-   913 ;; Registers used:
-   914 ;;		wreg, status,2, status,0
-   915 ;; Tracked objects:
-   916 ;;		On entry : 0/0
-   917 ;;		On exit  : 0/0
-   918 ;;		Unchanged: 0/0
-   919 ;; Data sizes:     COMMON   BANK0   BANK1
-   920 ;;      Params:         0       0       0
-   921 ;;      Locals:         1       0       0
-   922 ;;      Temps:          4       0       0
-   923 ;;      Totals:         5       0       0
-   924 ;;Total ram usage:        5 bytes
-   925 ;; Hardware stack levels used:    1
-   926 ;; This function calls:
-   927 ;;		Nothing
-   928 ;; This function is called by:
-   929 ;;		_setUpBuffer
-   930 ;; This function uses a non-reentrant model
-   931 ;;
-   932                           
-   933                           
-   934                           ;psect for function _spread
-   935  05B9                     _spread:	
-   936                           
-   937                           ;incstack = 0
-   938                           ; Regs used in _spread: [wreg+status,2+status,0]
-   939                           ;spread@b stored from wreg
-   940  05B9  00E3               	movwf	spread@b
-   941                           
-   942                           ;magicwandmain.c: 82: b = ((b & 0x55) << 1) | ((b >> 1) & 0x55);
-   943  05BA  0863               	movf	spread@b,w
-   944  05BB  00DF               	movwf	??_spread
-   945  05BC  3001               	movlw	1
-   946  05BD                     u15:	
-   947  05BD  1003               	clrc
-   948  05BE  0CDF               	rrf	??_spread,f
-   949  05BF  3EFF               	addlw	-1
-   950  05C0  1D03               	skipz
-   951  05C1  2DBD               	goto	u15
-   952  05C2  3055               	movlw	85
-   953  05C3  055F               	andwf	??_spread,w
-   954  05C4  00E0               	movwf	??_spread+1
-   955  05C5  0863               	movf	spread@b,w
-   956  05C6  3955               	andlw	85
-   957  05C7  00E1               	movwf	??_spread+2
-   958  05C8  0761               	addwf	??_spread+2,w
-   959  05C9  0460               	iorwf	??_spread+1,w
-   960  05CA  00E2               	movwf	??_spread+3
-   961  05CB  0862               	movf	??_spread+3,w
-   962  05CC  00E3               	movwf	spread@b
-   963                           
-   964                           ;magicwandmain.c: 83: b = ((b & 0x33) << 2) | ((b >> 2) & 0x33);
-   965  05CD  0863               	movf	spread@b,w
-   966  05CE  00DF               	movwf	??_spread
-   967  05CF  3002               	movlw	2
-   968  05D0                     u25:	
-   969  05D0  1003               	clrc
-   970  05D1  0CDF               	rrf	??_spread,f
-   971  05D2  3EFF               	addlw	-1
-   972  05D3  1D03               	skipz
-   973  05D4  2DD0               	goto	u25
-   974  05D5  3033               	movlw	51
-   975  05D6  055F               	andwf	??_spread,w
-   976  05D7  00E0               	movwf	??_spread+1
-   977  05D8  0863               	movf	spread@b,w
-   978  05D9  3933               	andlw	51
-   979  05DA  00E1               	movwf	??_spread+2
-   980  05DB  3001               	movlw	1
-   981  05DC                     u35:	
-   982  05DC  1003               	clrc
-   983  05DD  0DE1               	rlf	??_spread+2,f
-   984  05DE  3EFF               	addlw	-1
-   985  05DF  1D03               	skipz
-   986  05E0  2DDC               	goto	u35
-   987  05E1  1003               	clrc
-   988  05E2  0D61               	rlf	??_spread+2,w
-   989  05E3  0460               	iorwf	??_spread+1,w
-   990  05E4  00E2               	movwf	??_spread+3
-   991  05E5  0862               	movf	??_spread+3,w
-   992  05E6  00E3               	movwf	spread@b
-   993                           
-   994                           ;magicwandmain.c: 84: b = ((b & 0x0F) << 4) | (b >> 4);
-   995  05E7  0863               	movf	spread@b,w
-   996  05E8  00DF               	movwf	??_spread
-   997  05E9  3004               	movlw	4
-   998  05EA                     u45:	
-   999  05EA  1003               	clrc
-  1000  05EB  0CDF               	rrf	??_spread,f
-  1001  05EC  3EFF               	addlw	-1
-  1002  05ED  1D03               	skipz
-  1003  05EE  2DEA               	goto	u45
-  1004  05EF  0863               	movf	spread@b,w
-  1005  05F0  390F               	andlw	15
-  1006  05F1  00E0               	movwf	??_spread+1
-  1007  05F2  3003               	movlw	3
-  1008  05F3                     u55:	
-  1009  05F3  1003               	clrc
-  1010  05F4  0DE0               	rlf	??_spread+1,f
-  1011  05F5  3EFF               	addlw	-1
-  1012  05F6  1D03               	skipz
-  1013  05F7  2DF3               	goto	u55
-  1014  05F8  1003               	clrc
-  1015  05F9  0D60               	rlf	??_spread+1,w
-  1016  05FA  045F               	iorwf	??_spread,w
-  1017  05FB  00E1               	movwf	??_spread+2
-  1018  05FC  0861               	movf	??_spread+2,w
-  1019  05FD  00E3               	movwf	spread@b
-  1020                           
-  1021                           ;magicwandmain.c: 86: return b;
-  1022  05FE  0863               	movf	spread@b,w
-  1023  05FF  0008               	return
-  1024  0600                     __end_of_spread:	
-  1025                           
-  1026                           	psect	text3
-  1027  0537                     __ptext3:	
-  1028 ;; *************** function _ascii2font *****************
-  1029 ;; Defined at:
-  1030 ;;		line 77 in file "magicwandmain.c"
-  1031 ;; Parameters:    Size  Location     Type
-  1032 ;;  ascii           1    wreg     unsigned char 
-  1033 ;; Auto vars:     Size  Location     Type
-  1034 ;;  ascii           1    0[COMMON] unsigned char 
-  1035 ;; Return value:  Size  Location     Type
-  1036 ;;                  1    wreg      unsigned char 
-  1037 ;; Registers used:
-  1038 ;;		wreg, status,2, status,0
-  1039 ;; Tracked objects:
-  1040 ;;		On entry : 0/0
-  1041 ;;		On exit  : 0/0
-  1042 ;;		Unchanged: 0/0
-  1043 ;; Data sizes:     COMMON   BANK0   BANK1
-  1044 ;;      Params:         0       0       0
-  1045 ;;      Locals:         1       0       0
-  1046 ;;      Temps:          0       0       0
-  1047 ;;      Totals:         1       0       0
-  1048 ;;Total ram usage:        1 bytes
-  1049 ;; Hardware stack levels used:    1
-  1050 ;; This function calls:
-  1051 ;;		Nothing
-  1052 ;; This function is called by:
-  1053 ;;		_setUpBuffer
-  1054 ;; This function uses a non-reentrant model
-  1055 ;;
-  1056                           
-  1057                           
-  1058                           ;psect for function _ascii2font
-  1059  0537                     _ascii2font:	
-  1060                           
-  1061                           ;incstack = 0
-  1062                           ; Regs used in _ascii2font: [wreg+status,2+status,0]
-  1063                           ;ascii2font@ascii stored from wreg
-  1064  0537  00DF               	movwf	ascii2font@ascii
-  1065                           
-  1066                           ;magicwandmain.c: 78: ascii -= 0x20;
-  1067  0538  3020               	movlw	32
-  1068  0539  02DF               	subwf	ascii2font@ascii,f
-  1069                           
-  1070                           ;magicwandmain.c: 79: return ascii;
-  1071  053A  085F               	movf	ascii2font@ascii,w
-  1072  053B  0008               	return
-  1073  053C                     __end_of_ascii2font:	
-  1074                           
-  1075                           	psect	text4
-  1076  053C                     __ptext4:	
-  1077 ;; *************** function ___wmul *****************
-  1078 ;; Defined at:
-  1079 ;;		line 15 in file "C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\Umul16.c"
-  1080 ;; Parameters:    Size  Location     Type
-  1081 ;;  multiplier      2    1[COMMON] unsigned int 
-  1082 ;;  multiplicand    2    3[COMMON] unsigned int 
-  1083 ;; Auto vars:     Size  Location     Type
-  1084 ;;  product         2    5[COMMON] unsigned int 
-  1085 ;; Return value:  Size  Location     Type
-  1086 ;;                  2    1[COMMON] unsigned int 
-  1087 ;; Registers used:
-  1088 ;;		wreg, status,2, status,0
-  1089 ;; Tracked objects:
-  1090 ;;		On entry : 0/0
-  1091 ;;		On exit  : 0/0
-  1092 ;;		Unchanged: 0/0
-  1093 ;; Data sizes:     COMMON   BANK0   BANK1
-  1094 ;;      Params:         4       0       0
-  1095 ;;      Locals:         2       0       0
-  1096 ;;      Temps:          0       0       0
-  1097 ;;      Totals:         6       0       0
-  1098 ;;Total ram usage:        6 bytes
-  1099 ;; Hardware stack levels used:    1
-  1100 ;; This function calls:
-  1101 ;;		Nothing
-  1102 ;; This function is called by:
-  1103 ;;		_setUpBuffer
-  1104 ;; This function uses a non-reentrant model
-  1105 ;;
+   833  0599  086F               	movf	setUpBuffer@currentChar,w
+   834  059A  3E74               	addlw	low (_message| (0+32768))
+   835  059B  0084               	movwf	4
+   836  059C  3087               	movlw	high (_message| (0+32768))
+   837  059D  1803               	skipnc
+   838  059E  3E01               	addlw	1
+   839  059F  1283               	bcf	3,5	;RP0=0, select bank0
+   840  05A0  1303               	bcf	3,6	;RP1=0, select bank0
+   841  05A1  00FF               	movwf	127
+   842  05A2  2600               	fcall	stringtab
+   843  05A3  2506               	fcall	_ascii2font
+   844  05A4  00E6               	movwf	??_setUpBuffer
+   845  05A5  01E7               	clrf	??_setUpBuffer+1
+   846  05A6  0866               	movf	??_setUpBuffer,w
+   847  05A7  00E0               	movwf	___wmul@multiplier
+   848  05A8  0867               	movf	??_setUpBuffer+1,w
+   849  05A9  00E1               	movwf	___wmul@multiplier+1
+   850  05AA  3006               	movlw	6
+   851  05AB  00E2               	movwf	___wmul@multiplicand
+   852  05AC  3000               	movlw	0
+   853  05AD  00E3               	movwf	___wmul@multiplicand+1
+   854  05AE  250B               	fcall	___wmul
+   855  05AF  3012               	movlw	low (_matrixFont| (0+32768))
+   856  05B0  00E8               	movwf	??_setUpBuffer+2
+   857  05B1  3086               	movlw	high (_matrixFont| (0+32768))
+   858  05B2  00E9               	movwf	??_setUpBuffer+3
+   859  05B3  0860               	movf	?___wmul,w
+   860  05B4  0768               	addwf	??_setUpBuffer+2,w
+   861  05B5  00EA               	movwf	??_setUpBuffer+4
+   862  05B6  0861               	movf	?___wmul+1,w
+   863  05B7  1803               	skipnc
+   864  05B8  0A61               	incf	?___wmul+1,w
+   865  05B9  0769               	addwf	??_setUpBuffer+3,w
+   866  05BA  00EB               	movwf	??_setUpBuffer+5
+   867  05BB  086D               	movf	setUpBuffer@j,w
+   868  05BC  076A               	addwf	??_setUpBuffer+4,w
+   869  05BD  0084               	movwf	4
+   870  05BE  086E               	movf	setUpBuffer@j+1,w
+   871  05BF  1803               	skipnc
+   872  05C0  0A6E               	incf	setUpBuffer@j+1,w
+   873  05C1  076B               	addwf	??_setUpBuffer+5,w
+   874  05C2  1283               	bcf	3,5	;RP0=0, select bank0
+   875  05C3  1303               	bcf	3,6	;RP1=0, select bank0
+   876  05C4  00FF               	movwf	127
+   877  05C5  2600               	fcall	stringtab
+   878  05C6  252E               	fcall	_spread
+   879  05C7  00EC               	movwf	??_setUpBuffer+6
+   880  05C8  085E               	movf	_buffer_length,w
+   881  05C9  3E40               	addlw	_display_buffer& (0+255)
+   882  05CA  0084               	movwf	4
+   883  05CB  086C               	movf	??_setUpBuffer+6,w
+   884  05CC  0080               	movwf	0
+   885                           
+   886                           ;magicwandmain.c: 79: buffer_length++;
+   887  05CD  3001               	movlw	1
+   888  05CE  00E6               	movwf	??_setUpBuffer
+   889  05CF  0866               	movf	??_setUpBuffer,w
+   890  05D0  07DE               	addwf	_buffer_length,f
+   891  05D1  3001               	movlw	1
+   892  05D2  07ED               	addwf	setUpBuffer@j,f
+   893  05D3  1803               	skipnc
+   894  05D4  0AEE               	incf	setUpBuffer@j+1,f
+   895  05D5  3000               	movlw	0
+   896  05D6  07EE               	addwf	setUpBuffer@j+1,f
+   897  05D7  086E               	movf	setUpBuffer@j+1,w
+   898  05D8  3A80               	xorlw	128
+   899  05D9  00FF               	movwf	127
+   900  05DA  3080               	movlw	128
+   901  05DB  027F               	subwf	127,w
+   902  05DC  1D03               	skipz
+   903  05DD  2DE0               	goto	u125
+   904  05DE  3006               	movlw	6
+   905  05DF  026D               	subwf	setUpBuffer@j,w
+   906  05E0                     u125:	
+   907  05E0  1C03               	skipc
+   908  05E1  2D99               	goto	l463
+   909  05E2                     l471:	
+   910  05E2  3001               	movlw	1
+   911  05E3  07EF               	addwf	setUpBuffer@currentChar,f
+   912  05E4  1803               	skipnc
+   913  05E5  0AF0               	incf	setUpBuffer@currentChar+1,f
+   914  05E6  3000               	movlw	0
+   915  05E7  07F0               	addwf	setUpBuffer@currentChar+1,f
+   916  05E8  307A               	movlw	low (_display_length| (0+32768))
+   917  05E9  0084               	movwf	4
+   918  05EA  3087               	movlw	high (_display_length| (0+32768))
+   919  05EB  1283               	bcf	3,5	;RP0=0, select bank0
+   920  05EC  1303               	bcf	3,6	;RP1=0, select bank0
+   921  05ED  00FF               	movwf	127
+   922  05EE  2600               	fcall	stringtab
+   923  05EF  00E6               	movwf	??_setUpBuffer
+   924  05F0  0870               	movf	setUpBuffer@currentChar+1,w
+   925  05F1  3A80               	xorlw	128
+   926  05F2  00E7               	movwf	??_setUpBuffer+1
+   927  05F3  3080               	movlw	128
+   928  05F4  0267               	subwf	??_setUpBuffer+1,w
+   929  05F5  1D03               	skipz
+   930  05F6  2DF9               	goto	u135
+   931  05F7  0866               	movf	??_setUpBuffer,w
+   932  05F8  026F               	subwf	setUpBuffer@currentChar,w
+   933  05F9                     u135:	
+   934  05F9  1C03               	skipc
+   935  05FA  2D8C               	goto	l457
+   936  05FB                     l475:	
+   937                           
+   938                           ;magicwandmain.c: 80: }
+   939                           ;magicwandmain.c: 81: }
+   940                           ;magicwandmain.c: 82: display_buffer[buffer_length] = 0;
+   941  05FB  085E               	movf	_buffer_length,w
+   942  05FC  3E40               	addlw	_display_buffer& (0+255)
+   943  05FD  0084               	movwf	4
+   944  05FE  0180               	clrf	0
+   945  05FF  0008               	return
+   946  0600                     __end_of_setUpBuffer:	
+   947                           
+   948                           	psect	text2
+   949  052E                     __ptext2:	
+   950 ;; *************** function _spread *****************
+   951 ;; Defined at:
+   952 ;;		line 89 in file "magicwandmain.c"
+   953 ;; Parameters:    Size  Location     Type
+   954 ;;  b               1    wreg     unsigned char 
+   955 ;; Auto vars:     Size  Location     Type
+   956 ;;  b               1    4[COMMON] unsigned char 
+   957 ;; Return value:  Size  Location     Type
+   958 ;;                  1    wreg      unsigned char 
+   959 ;; Registers used:
+   960 ;;		wreg, status,2, status,0
+   961 ;; Tracked objects:
+   962 ;;		On entry : 0/0
+   963 ;;		On exit  : 0/0
+   964 ;;		Unchanged: 0/0
+   965 ;; Data sizes:     COMMON   BANK0   BANK1
+   966 ;;      Params:         0       0       0
+   967 ;;      Locals:         1       0       0
+   968 ;;      Temps:          4       0       0
+   969 ;;      Totals:         5       0       0
+   970 ;;Total ram usage:        5 bytes
+   971 ;; Hardware stack levels used:    1
+   972 ;; This function calls:
+   973 ;;		Nothing
+   974 ;; This function is called by:
+   975 ;;		_setUpBuffer
+   976 ;; This function uses a non-reentrant model
+   977 ;;
+   978                           
+   979                           
+   980                           ;psect for function _spread
+   981  052E                     _spread:	
+   982                           
+   983                           ;incstack = 0
+   984                           ; Regs used in _spread: [wreg+status,2+status,0]
+   985                           ;spread@b stored from wreg
+   986  052E  00E3               	movwf	spread@b
+   987                           
+   988                           ;magicwandmain.c: 90: b = ((b & 0x55) << 1) | ((b >> 1) & 0x55);
+   989  052F  0863               	movf	spread@b,w
+   990  0530  00DF               	movwf	??_spread
+   991  0531  3001               	movlw	1
+   992  0532                     u15:	
+   993  0532  1003               	clrc
+   994  0533  0CDF               	rrf	??_spread,f
+   995  0534  3EFF               	addlw	-1
+   996  0535  1D03               	skipz
+   997  0536  2D32               	goto	u15
+   998  0537  3055               	movlw	85
+   999  0538  055F               	andwf	??_spread,w
+  1000  0539  00E0               	movwf	??_spread+1
+  1001  053A  0863               	movf	spread@b,w
+  1002  053B  3955               	andlw	85
+  1003  053C  00E1               	movwf	??_spread+2
+  1004  053D  0761               	addwf	??_spread+2,w
+  1005  053E  0460               	iorwf	??_spread+1,w
+  1006  053F  00E2               	movwf	??_spread+3
+  1007  0540  0862               	movf	??_spread+3,w
+  1008  0541  00E3               	movwf	spread@b
+  1009                           
+  1010                           ;magicwandmain.c: 91: b = ((b & 0x33) << 2) | ((b >> 2) & 0x33);
+  1011  0542  0863               	movf	spread@b,w
+  1012  0543  00DF               	movwf	??_spread
+  1013  0544  3002               	movlw	2
+  1014  0545                     u25:	
+  1015  0545  1003               	clrc
+  1016  0546  0CDF               	rrf	??_spread,f
+  1017  0547  3EFF               	addlw	-1
+  1018  0548  1D03               	skipz
+  1019  0549  2D45               	goto	u25
+  1020  054A  3033               	movlw	51
+  1021  054B  055F               	andwf	??_spread,w
+  1022  054C  00E0               	movwf	??_spread+1
+  1023  054D  0863               	movf	spread@b,w
+  1024  054E  3933               	andlw	51
+  1025  054F  00E1               	movwf	??_spread+2
+  1026  0550  3001               	movlw	1
+  1027  0551                     u35:	
+  1028  0551  1003               	clrc
+  1029  0552  0DE1               	rlf	??_spread+2,f
+  1030  0553  3EFF               	addlw	-1
+  1031  0554  1D03               	skipz
+  1032  0555  2D51               	goto	u35
+  1033  0556  1003               	clrc
+  1034  0557  0D61               	rlf	??_spread+2,w
+  1035  0558  0460               	iorwf	??_spread+1,w
+  1036  0559  00E2               	movwf	??_spread+3
+  1037  055A  0862               	movf	??_spread+3,w
+  1038  055B  00E3               	movwf	spread@b
+  1039                           
+  1040                           ;magicwandmain.c: 92: b = ((b & 0x0F) << 4) | (b >> 4);
+  1041  055C  0863               	movf	spread@b,w
+  1042  055D  00DF               	movwf	??_spread
+  1043  055E  3004               	movlw	4
+  1044  055F                     u45:	
+  1045  055F  1003               	clrc
+  1046  0560  0CDF               	rrf	??_spread,f
+  1047  0561  3EFF               	addlw	-1
+  1048  0562  1D03               	skipz
+  1049  0563  2D5F               	goto	u45
+  1050  0564  0863               	movf	spread@b,w
+  1051  0565  390F               	andlw	15
+  1052  0566  00E0               	movwf	??_spread+1
+  1053  0567  3003               	movlw	3
+  1054  0568                     u55:	
+  1055  0568  1003               	clrc
+  1056  0569  0DE0               	rlf	??_spread+1,f
+  1057  056A  3EFF               	addlw	-1
+  1058  056B  1D03               	skipz
+  1059  056C  2D68               	goto	u55
+  1060  056D  1003               	clrc
+  1061  056E  0D60               	rlf	??_spread+1,w
+  1062  056F  045F               	iorwf	??_spread,w
+  1063  0570  00E1               	movwf	??_spread+2
+  1064  0571  0861               	movf	??_spread+2,w
+  1065  0572  00E3               	movwf	spread@b
+  1066                           
+  1067                           ;magicwandmain.c: 94: return b;
+  1068  0573  0863               	movf	spread@b,w
+  1069  0574  0008               	return
+  1070  0575                     __end_of_spread:	
+  1071                           
+  1072                           	psect	text3
+  1073  0506                     __ptext3:	
+  1074 ;; *************** function _ascii2font *****************
+  1075 ;; Defined at:
+  1076 ;;		line 85 in file "magicwandmain.c"
+  1077 ;; Parameters:    Size  Location     Type
+  1078 ;;  ascii           1    wreg     unsigned char 
+  1079 ;; Auto vars:     Size  Location     Type
+  1080 ;;  ascii           1    0[COMMON] unsigned char 
+  1081 ;; Return value:  Size  Location     Type
+  1082 ;;                  1    wreg      unsigned char 
+  1083 ;; Registers used:
+  1084 ;;		wreg, status,2, status,0
+  1085 ;; Tracked objects:
+  1086 ;;		On entry : 0/0
+  1087 ;;		On exit  : 0/0
+  1088 ;;		Unchanged: 0/0
+  1089 ;; Data sizes:     COMMON   BANK0   BANK1
+  1090 ;;      Params:         0       0       0
+  1091 ;;      Locals:         1       0       0
+  1092 ;;      Temps:          0       0       0
+  1093 ;;      Totals:         1       0       0
+  1094 ;;Total ram usage:        1 bytes
+  1095 ;; Hardware stack levels used:    1
+  1096 ;; This function calls:
+  1097 ;;		Nothing
+  1098 ;; This function is called by:
+  1099 ;;		_setUpBuffer
+  1100 ;; This function uses a non-reentrant model
+  1101 ;;
+  1102                           
+  1103                           
+  1104                           ;psect for function _ascii2font
+  1105  0506                     _ascii2font:	
   1106                           
-  1107                           
-  1108                           ;psect for function ___wmul
-  1109  053C                     ___wmul:	
-  1110                           
-  1111                           ;incstack = 0
-  1112                           ; Regs used in ___wmul: [wreg+status,2+status,0]
-  1113  053C  01E4               	clrf	___wmul@product
-  1114  053D  01E5               	clrf	___wmul@product+1
-  1115  053E                     l442:	
-  1116  053E  1C60               	btfss	___wmul@multiplier,0
-  1117  053F  2D46               	goto	l61
-  1118  0540  0862               	movf	___wmul@multiplicand,w
-  1119  0541  07E4               	addwf	___wmul@product,f
-  1120  0542  1803               	skipnc
-  1121  0543  0AE5               	incf	___wmul@product+1,f
-  1122  0544  0863               	movf	___wmul@multiplicand+1,w
-  1123  0545  07E5               	addwf	___wmul@product+1,f
-  1124  0546                     l61:	
-  1125  0546  3001               	movlw	1
-  1126  0547                     u75:	
-  1127  0547  1003               	clrc
-  1128  0548  0DE2               	rlf	___wmul@multiplicand,f
-  1129  0549  0DE3               	rlf	___wmul@multiplicand+1,f
-  1130  054A  3EFF               	addlw	-1
-  1131  054B  1D03               	skipz
-  1132  054C  2D47               	goto	u75
-  1133  054D  3001               	movlw	1
-  1134  054E                     u85:	
-  1135  054E  1003               	clrc
-  1136  054F  0CE1               	rrf	___wmul@multiplier+1,f
-  1137  0550  0CE0               	rrf	___wmul@multiplier,f
-  1138  0551  3EFF               	addlw	-1
-  1139  0552  1D03               	skipz
-  1140  0553  2D4E               	goto	u85
-  1141  0554  0861               	movf	___wmul@multiplier+1,w
-  1142  0555  0460               	iorwf	___wmul@multiplier,w
-  1143  0556  1D03               	skipz
-  1144  0557  2D3E               	goto	l442
-  1145  0558  0865               	movf	___wmul@product+1,w
-  1146  0559  01E1               	clrf	?___wmul+1
-  1147  055A  07E1               	addwf	?___wmul+1,f
-  1148  055B  0864               	movf	___wmul@product,w
-  1149  055C  01E0               	clrf	?___wmul
-  1150  055D  07E0               	addwf	?___wmul,f
-  1151  055E  0008               	return
-  1152  055F                     __end_of___wmul:	
+  1107                           ;incstack = 0
+  1108                           ; Regs used in _ascii2font: [wreg+status,2+status,0]
+  1109                           ;ascii2font@ascii stored from wreg
+  1110  0506  00DF               	movwf	ascii2font@ascii
+  1111                           
+  1112                           ;magicwandmain.c: 86: ascii -= 0x20;
+  1113  0507  3020               	movlw	32
+  1114  0508  02DF               	subwf	ascii2font@ascii,f
+  1115                           
+  1116                           ;magicwandmain.c: 87: return ascii;
+  1117  0509  085F               	movf	ascii2font@ascii,w
+  1118  050A  0008               	return
+  1119  050B                     __end_of_ascii2font:	
+  1120                           
+  1121                           	psect	text4
+  1122  050B                     __ptext4:	
+  1123 ;; *************** function ___wmul *****************
+  1124 ;; Defined at:
+  1125 ;;		line 15 in file "C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\Umul16.c"
+  1126 ;; Parameters:    Size  Location     Type
+  1127 ;;  multiplier      2    1[COMMON] unsigned int 
+  1128 ;;  multiplicand    2    3[COMMON] unsigned int 
+  1129 ;; Auto vars:     Size  Location     Type
+  1130 ;;  product         2    5[COMMON] unsigned int 
+  1131 ;; Return value:  Size  Location     Type
+  1132 ;;                  2    1[COMMON] unsigned int 
+  1133 ;; Registers used:
+  1134 ;;		wreg, status,2, status,0
+  1135 ;; Tracked objects:
+  1136 ;;		On entry : 0/0
+  1137 ;;		On exit  : 0/0
+  1138 ;;		Unchanged: 0/0
+  1139 ;; Data sizes:     COMMON   BANK0   BANK1
+  1140 ;;      Params:         4       0       0
+  1141 ;;      Locals:         2       0       0
+  1142 ;;      Temps:          0       0       0
+  1143 ;;      Totals:         6       0       0
+  1144 ;;Total ram usage:        6 bytes
+  1145 ;; Hardware stack levels used:    1
+  1146 ;; This function calls:
+  1147 ;;		Nothing
+  1148 ;; This function is called by:
+  1149 ;;		_setUpBuffer
+  1150 ;; This function uses a non-reentrant model
+  1151 ;;
+  1152                           
   1153                           
-  1154                           	psect	text5
-  1155  055F                     __ptext5:	
-  1156 ;; *************** function _run *****************
-  1157 ;; Defined at:
-  1158 ;;		line 89 in file "magicwandmain.c"
-  1159 ;; Parameters:    Size  Location     Type
-  1160 ;;		None
-  1161 ;; Auto vars:     Size  Location     Type
-  1162 ;;  i               2    2[COMMON] int 
-  1163 ;; Return value:  Size  Location     Type
-  1164 ;;		None               void
-  1165 ;; Registers used:
-  1166 ;;		wreg, fsr0l, fsr0h, status,2, status,0
-  1167 ;; Tracked objects:
-  1168 ;;		On entry : 0/0
-  1169 ;;		On exit  : 0/0
-  1170 ;;		Unchanged: 0/0
-  1171 ;; Data sizes:     COMMON   BANK0   BANK1
-  1172 ;;      Params:         0       0       0
-  1173 ;;      Locals:         2       0       0
-  1174 ;;      Temps:          2       0       0
-  1175 ;;      Totals:         4       0       0
-  1176 ;;Total ram usage:        4 bytes
-  1177 ;; Hardware stack levels used:    1
-  1178 ;; This function calls:
-  1179 ;;		Nothing
-  1180 ;; This function is called by:
-  1181 ;;		_main
-  1182 ;; This function uses a non-reentrant model
-  1183 ;;
-  1184                           
-  1185                           
-  1186                           ;psect for function _run
-  1187  055F                     _run:	
-  1188                           
-  1189                           ;magicwandmain.c: 90: int i;
-  1190                           ;magicwandmain.c: 91: for(i=0; i<buffer_length; i++){
-  1191                           
-  1192                           ;incstack = 0
-  1193                           ; Regs used in _run: [wreg-fsr0h+status,2+status,0]
-  1194  055F  01E1               	clrf	run@i
-  1195  0560  01E2               	clrf	run@i+1
-  1196  0561                     l486:	
-  1197  0561  0862               	movf	run@i+1,w
-  1198  0562  3A80               	xorlw	128
-  1199  0563  00DF               	movwf	??_run
-  1200  0564  3080               	movlw	128
-  1201  0565  025F               	subwf	??_run,w
-  1202  0566  1D03               	skipz
-  1203  0567  2D6A               	goto	u135
-  1204  0568  085E               	movf	_buffer_length,w
-  1205  0569  0261               	subwf	run@i,w
-  1206  056A                     u135:	
-  1207  056A  1803               	btfsc	3,0
-  1208  056B  0008               	return
-  1209                           
-  1210                           ;magicwandmain.c: 92: PORTB = display_buffer[i];
-  1211  056C  0861               	movf	run@i,w
-  1212  056D  3E40               	addlw	_display_buffer& (0+255)
-  1213  056E  0084               	movwf	4
-  1214  056F  0800               	movf	0,w
-  1215  0570  1283               	bcf	3,5	;RP0=0, select bank0
-  1216  0571  1303               	bcf	3,6	;RP1=0, select bank0
-  1217  0572  0086               	movwf	6	;volatile
-  1218                           
-  1219                           ;magicwandmain.c: 93: _delay((unsigned long)((900)*(8000000/4000000.0)));
-  1220  0573  3003               	movlw	3
-  1221  0574  00E0               	movwf	??_run+1
-  1222  0575  3055               	movlw	85
-  1223  0576  00DF               	movwf	??_run
-  1224  0577                     u177:	
-  1225  0577  0BDF               	decfsz	??_run,f
-  1226  0578  2D77               	goto	u177
-  1227  0579  0BE0               	decfsz	??_run+1,f
-  1228  057A  2D77               	goto	u177
-  1229                           
-  1230                           ;magicwandmain.c: 94: PORTB = 0x0;
-  1231  057B  1283               	bcf	3,5	;RP0=0, select bank0
-  1232  057C  1303               	bcf	3,6	;RP1=0, select bank0
-  1233  057D  0186               	clrf	6	;volatile
-  1234  057E  3001               	movlw	1
-  1235  057F  07E1               	addwf	run@i,f
-  1236  0580  1803               	skipnc
-  1237  0581  0AE2               	incf	run@i+1,f
-  1238  0582  3000               	movlw	0
-  1239  0583  07E2               	addwf	run@i+1,f
-  1240  0584  2D61               	goto	l486
-  1241  0585                     __end_of_run:	
-  1242  007E                     btemp	set	126	;btemp
-  1243  007E                     wtemp	set	126
-  1244  007E                     wtemp0	set	126
-  1245  0080                     wtemp1	set	128
-  1246  0082                     wtemp2	set	130
-  1247  0084                     wtemp3	set	132
-  1248  0086                     wtemp4	set	134
-  1249  0088                     wtemp5	set	136
-  1250  007F                     wtemp6	set	127
-  1251  007E                     ttemp	set	126
-  1252  007E                     ttemp0	set	126
-  1253  0081                     ttemp1	set	129
-  1254  0084                     ttemp2	set	132
-  1255  0087                     ttemp3	set	135
-  1256  007F                     ttemp4	set	127
-  1257  007E                     ltemp	set	126
-  1258  007E                     ltemp0	set	126
-  1259  0082                     ltemp1	set	130
-  1260  0086                     ltemp2	set	134
-  1261  0080                     ltemp3	set	128
+  1154                           ;psect for function ___wmul
+  1155  050B                     ___wmul:	
+  1156                           
+  1157                           ;incstack = 0
+  1158                           ; Regs used in ___wmul: [wreg+status,2+status,0]
+  1159  050B  01E4               	clrf	___wmul@product
+  1160  050C  01E5               	clrf	___wmul@product+1
+  1161  050D                     l441:	
+  1162  050D  1C60               	btfss	___wmul@multiplier,0
+  1163  050E  2D15               	goto	l60
+  1164  050F  0862               	movf	___wmul@multiplicand,w
+  1165  0510  07E4               	addwf	___wmul@product,f
+  1166  0511  1803               	skipnc
+  1167  0512  0AE5               	incf	___wmul@product+1,f
+  1168  0513  0863               	movf	___wmul@multiplicand+1,w
+  1169  0514  07E5               	addwf	___wmul@product+1,f
+  1170  0515                     l60:	
+  1171  0515  3001               	movlw	1
+  1172  0516                     u75:	
+  1173  0516  1003               	clrc
+  1174  0517  0DE2               	rlf	___wmul@multiplicand,f
+  1175  0518  0DE3               	rlf	___wmul@multiplicand+1,f
+  1176  0519  3EFF               	addlw	-1
+  1177  051A  1D03               	skipz
+  1178  051B  2D16               	goto	u75
+  1179  051C  3001               	movlw	1
+  1180  051D                     u85:	
+  1181  051D  1003               	clrc
+  1182  051E  0CE1               	rrf	___wmul@multiplier+1,f
+  1183  051F  0CE0               	rrf	___wmul@multiplier,f
+  1184  0520  3EFF               	addlw	-1
+  1185  0521  1D03               	skipz
+  1186  0522  2D1D               	goto	u85
+  1187  0523  0861               	movf	___wmul@multiplier+1,w
+  1188  0524  0460               	iorwf	___wmul@multiplier,w
+  1189  0525  1D03               	skipz
+  1190  0526  2D0D               	goto	l441
+  1191  0527  0865               	movf	___wmul@product+1,w
+  1192  0528  01E1               	clrf	?___wmul+1
+  1193  0529  07E1               	addwf	?___wmul+1,f
+  1194  052A  0864               	movf	___wmul@product,w
+  1195  052B  01E0               	clrf	?___wmul
+  1196  052C  07E0               	addwf	?___wmul,f
+  1197  052D  0008               	return
+  1198  052E                     __end_of___wmul:	
+  1199                           
+  1200                           	psect	text5
+  1201  07C4                     __ptext5:	
+  1202 ;; *************** function _run *****************
+  1203 ;; Defined at:
+  1204 ;;		line 97 in file "magicwandmain.c"
+  1205 ;; Parameters:    Size  Location     Type
+  1206 ;;		None
+  1207 ;; Auto vars:     Size  Location     Type
+  1208 ;;  i               2    3[COMMON] int 
+  1209 ;; Return value:  Size  Location     Type
+  1210 ;;		None               void
+  1211 ;; Registers used:
+  1212 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  1213 ;; Tracked objects:
+  1214 ;;		On entry : 0/0
+  1215 ;;		On exit  : 0/0
+  1216 ;;		Unchanged: 0/0
+  1217 ;; Data sizes:     COMMON   BANK0   BANK1
+  1218 ;;      Params:         0       0       0
+  1219 ;;      Locals:         2       0       0
+  1220 ;;      Temps:          3       0       0
+  1221 ;;      Totals:         5       0       0
+  1222 ;;Total ram usage:        5 bytes
+  1223 ;; Hardware stack levels used:    1
+  1224 ;; This function calls:
+  1225 ;;		Nothing
+  1226 ;; This function is called by:
+  1227 ;;		_main
+  1228 ;; This function uses a non-reentrant model
+  1229 ;;
+  1230                           
+  1231                           
+  1232                           ;psect for function _run
+  1233  07C4                     _run:	
+  1234                           
+  1235                           ;magicwandmain.c: 98: int i;
+  1236                           ;magicwandmain.c: 99: for(i=0; i<buffer_length; i++){
+  1237                           
+  1238                           ;incstack = 0
+  1239                           ; Regs used in _run: [wreg-fsr0h+status,2+status,0]
+  1240  07C4  01E2               	clrf	run@i
+  1241  07C5  01E3               	clrf	run@i+1
+  1242  07C6                     l487:	
+  1243  07C6  0863               	movf	run@i+1,w
+  1244  07C7  3A80               	xorlw	128
+  1245  07C8  00DF               	movwf	??_run
+  1246  07C9  3080               	movlw	128
+  1247  07CA  025F               	subwf	??_run,w
+  1248  07CB  1D03               	skipz
+  1249  07CC  2FCF               	goto	u145
+  1250  07CD  085E               	movf	_buffer_length,w
+  1251  07CE  0262               	subwf	run@i,w
+  1252  07CF                     u145:	
+  1253  07CF  1803               	btfsc	3,0
+  1254  07D0  0008               	return
+  1255                           
+  1256                           ;magicwandmain.c: 100: PORTC = display_buffer[i];
+  1257  07D1  0862               	movf	run@i,w
+  1258  07D2  3E40               	addlw	_display_buffer& (0+255)
+  1259  07D3  0084               	movwf	4
+  1260  07D4  0800               	movf	0,w
+  1261  07D5  1283               	bcf	3,5	;RP0=0, select bank0
+  1262  07D6  1303               	bcf	3,6	;RP1=0, select bank0
+  1263  07D7  0087               	movwf	7	;volatile
+  1264                           
+  1265                           ;magicwandmain.c: 101: _delay((unsigned long)((500)*(8000000/4000.0)));
+  1266  07D8  3006               	movlw	6
+  1267  07D9  00E1               	movwf	??_run+2
+  1268  07DA  3013               	movlw	19
+  1269  07DB  00E0               	movwf	??_run+1
+  1270  07DC  30B1               	movlw	177
+  1271  07DD  00DF               	movwf	??_run
+  1272  07DE                     u197:	
+  1273  07DE  0BDF               	decfsz	??_run,f
+  1274  07DF  2FDE               	goto	u197
+  1275  07E0  0BE0               	decfsz	??_run+1,f
+  1276  07E1  2FDE               	goto	u197
+  1277  07E2  0BE1               	decfsz	??_run+2,f
+  1278  07E3  2FDE               	goto	u197
+  1279  07E4  2FE5               	nop2
+  1280                           
+  1281                           ;magicwandmain.c: 102: PORTC = 0x0;
+  1282  07E5  1283               	bcf	3,5	;RP0=0, select bank0
+  1283  07E6  1303               	bcf	3,6	;RP1=0, select bank0
+  1284  07E7  0187               	clrf	7	;volatile
+  1285  07E8  3001               	movlw	1
+  1286  07E9  07E2               	addwf	run@i,f
+  1287  07EA  1803               	skipnc
+  1288  07EB  0AE3               	incf	run@i+1,f
+  1289  07EC  3000               	movlw	0
+  1290  07ED  07E3               	addwf	run@i+1,f
+  1291  07EE  2FC6               	goto	l487
+  1292  07EF                     __end_of_run:	
+  1293  007E                     btemp	set	126	;btemp
+  1294  007E                     wtemp	set	126
+  1295  007E                     wtemp0	set	126
+  1296  0080                     wtemp1	set	128
+  1297  0082                     wtemp2	set	130
+  1298  0084                     wtemp3	set	132
+  1299  0086                     wtemp4	set	134
+  1300  0088                     wtemp5	set	136
+  1301  007F                     wtemp6	set	127
+  1302  007E                     ttemp	set	126
+  1303  007E                     ttemp0	set	126
+  1304  0081                     ttemp1	set	129
+  1305  0084                     ttemp2	set	132
+  1306  0087                     ttemp3	set	135
+  1307  007F                     ttemp4	set	127
+  1308  007E                     ltemp	set	126
+  1309  007E                     ltemp0	set	126
+  1310  0082                     ltemp1	set	130
+  1311  0086                     ltemp2	set	134
+  1312  0080                     ltemp3	set	128
 
 
 Data Sizes:
     Strings     0
-    Constant    360
+    Constant    361
     Data        0
     BSS         31
-    Persistent  1
+    Persistent  0
     Stack       0
 
 Auto Spaces:
     Space          Size  Autos    Used
-    COMMON           62     27      59
+    COMMON           62     27      58
     BANK0            32      0       0
     BANK1            32      0       0
 
@@ -1305,12 +1356,12 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (0) _main                                                 9     5      4     428
+ (0) _main                                                 9     5      4     443
                                              18 COMMON     9     5      4
                                 _run
                         _setUpBuffer
  ---------------------------------------------------------------------------------
- (1) _setUpBuffer                                         11    11      0     323
+ (1) _setUpBuffer                                         11    11      0     338
                                               7 COMMON    11    11      0
                              ___wmul
                          _ascii2font
@@ -1326,8 +1377,8 @@ Call Graph Tables:
                                               1 COMMON     6     2      4
                          _ascii2font (ARG)
  ---------------------------------------------------------------------------------
- (1) _run                                                  4     4      0      30
-                                              0 COMMON     4     4      0
+ (1) _run                                                  5     5      0      30
+                                              0 COMMON     5     5      0
  ---------------------------------------------------------------------------------
  Estimated maximum stack depth 2
  ---------------------------------------------------------------------------------
@@ -1347,7 +1398,7 @@ Name               Size   Autos  Total    Cost      Usage
 BITCOMMON           3E      0       0       0        0.0%
 NULL                 0      0       0       0        0.0%
 CODE                 0      0       0       0        0.0%
-COMMON              3E     1B      3B       1       95.2%
+COMMON              3E     1B      3A       1       93.5%
 BITSFR0              0      0       0       1        0.0%
 SFR0                 0      0       0       1        0.0%
 BITSFR1              0      0       0       2        0.0%
@@ -1356,58 +1407,59 @@ STACK                0      0       0       2        0.0%
 BANK0               20      0       0       3        0.0%
 BITSFR3              0      0       0       4        0.0%
 SFR3                 0      0       0       4        0.0%
-ABS                  0      0      3B       4        0.0%
+ABS                  0      0      3A       4        0.0%
 BITBANK0            20      0       0       5        0.0%
 BITSFR2              0      0       0       5        0.0%
 SFR2                 0      0       0       5        0.0%
 BITBANK1            20      0       0       6        0.0%
 BANK1               20      0       0       7        0.0%
-DATA                 0      0      3B       8        0.0%
+DATA                 0      0      3A       8        0.0%
 
 
 Microchip Technology PIC Macro Assembler V1.32 build 58300 
-Symbol Table                                                                                   Sun May 17 23:58:09 2015
+Symbol Table                                                                                   Sat May 23 19:23:34 2015
 
-                      pc 0002              __CFG_CP$OFF 0000                       l40 0782  
-                     l61 0546                       u15 05BD                       u25 05D0  
-                     u35 05DC                       u45 05EA                       u55 05F3  
-                     u75 0547                       u85 054E                       fsr 0004  
-    ___wmul@multiplicand 0062                      l442 053E                      l472 07E3  
-                    l464 079A                      l474 07EA                      l486 0561  
-                    _RA0 0028                      u105 0798                      u115 07E1  
-                    u125 078B                      u135 056A                      u167 05B0  
-                    u177 0577                      fsr0 0004                      _run 055F  
-                    indf 0000             __CFG_FOSC$HS 0000                     ?_run 005F  
-                   _main 0585                     btemp 007E                     ltemp 007E  
-                   run@i 0061                     start 0000                     ttemp 007E  
-                   wtemp 007E                    ??_run 005F                    ?_main 0071  
-          __CFG_WDTE$OFF 0000                    _PORTB 0006                    _TRISA 0085  
-                  _TRISC 0087          __end_of_message 077A           __CFG_BOREN$OFF 0000  
-                  pclath 000A                    ltemp0 007E                    ltemp1 0082  
-                  ltemp2 0086                    ltemp3 0080                    ttemp0 007E  
-                  ttemp1 0081                    ttemp2 0084                    ttemp3 0087  
-                  ttemp4 007F                    status 0003                    wtemp0 007E  
-                  wtemp1 0080                    wtemp2 0082                    wtemp3 0084  
-                  wtemp4 0086                    wtemp5 0088                    wtemp6 007F  
-        __initialization 07FA             __end_of_main 05B9                   ??_main 0075  
-           ?_setUpBuffer 005F                   _ADCON1 009F           __CFG_PWRTE$OFF 0000  
-                 ___wmul 053C                   _spread 05B9  __end_of__initialization 07FE  
-         __pcstackCOMMON 005F               __pnvCOMMON 007A               _ascii2font 0537  
-             __pmaintext 0585                  ?___wmul 0060                  ?_spread 005F  
-   __size_of_setUpBuffer 0075               __stringtab 0600          ascii2font@ascii 005F  
-        __size_of___wmul 0023               _matrixFont 0612                  __ptext1 077A  
-                __ptext2 05B9                  __ptext3 0537                  __ptext4 053C  
-                __ptext5 055F          __size_of_spread 0047             __size_of_run 0026  
-                _message 0774                  clrloop0 07F0     end_of_initialization 07FE  
-            ?_ascii2font 005F                  spread@b 0063             __pstringtext 0600  
-             main@sensor 0079           __end_of___wmul 055F           __end_of_spread 0600  
-    start_initialization 07FA   setUpBuffer@currentChar 006D              __end_of_run 0585  
-    __size_of_ascii2font 0005                 ??___wmul 0064                 ??_spread 005F  
-            __pbssCOMMON 0040                ___latbits 0000            ??_setUpBuffer 0066  
-         ___wmul@product 0064                clear_ram0 07EF             ??_ascii2font 005F  
-           setUpBuffer@j 006F          main@last_sensor 0078              __stringbase 0612  
-      ___wmul@multiplier 0060       __end_of_ascii2font 053C      __end_of_setUpBuffer 07EF  
-     __end_of__stringtab 0612            __size_of_main 0034       __end_of_matrixFont 0774  
-               main@argc 0071                 main@argv 0073              _setUpBuffer 077A  
-              stringcode 060A            _buffer_length 005E           _display_buffer 0040  
-         _display_length 007A                 stringtab 0600  
+                      pc 0002              __CFG_CP$OFF 0000                       l60 0515  
+                     u15 0532                       u25 0545                       u35 0551  
+                     u45 055F                       u55 0568                       u75 0516  
+                     u85 051D                       fsr 0004      ___wmul@multiplicand 0062  
+                    l441 050D                      l505 07A1                      l515 07BF  
+                    l471 05E2                      l463 0599                      l457 058C  
+                    l475 05FB                      l487 07C6                      _RA0 0028  
+                    u105 058A                      u115 0597   __end_of_display_length 077B  
+                    u125 05E0                      u135 05F9                      u145 07CF  
+                    u177 0798                      u187 07B7                      u197 07DE  
+                    fsr0 0004                      _run 07C4                      indf 0000  
+           __CFG_FOSC$HS 0000                     ?_run 005F                     _main 077B  
+                   btemp 007E                     ltemp 007E                     run@i 0062  
+                   start 0000                     ttemp 007E                     wtemp 007E  
+                  ??_run 005F                    ?_main 0071            __CFG_WDTE$OFF 0000  
+                  _PORTC 0007                    _TRISA 0085                    _TRISC 0087  
+        __end_of_message 077A           __CFG_BOREN$OFF 0000                    pclath 000A  
+                  ltemp0 007E                    ltemp1 0082                    ltemp2 0086  
+                  ltemp3 0080                    ttemp0 007E                    ttemp1 0081  
+                  ttemp2 0084                    ttemp3 0087                    ttemp4 007F  
+                  status 0003                    wtemp0 007E                    wtemp1 0080  
+                  wtemp2 0082                    wtemp3 0084                    wtemp4 0086  
+                  wtemp5 0088                    wtemp6 007F          __initialization 07FA  
+           __end_of_main 07C4                   ??_main 0075             ?_setUpBuffer 005F  
+                 _ADCON1 009F           __CFG_PWRTE$OFF 0000                   ___wmul 050B  
+                 _spread 052E  __end_of__initialization 07FE           __pcstackCOMMON 005F  
+             _ascii2font 0506               __pmaintext 077B                  ?___wmul 0060  
+                ?_spread 005F     __size_of_setUpBuffer 008B               __stringtab 0600  
+        ascii2font@ascii 005F          __size_of___wmul 0023               _matrixFont 0612  
+                __ptext1 0575                  __ptext2 052E                  __ptext3 0506  
+                __ptext4 050B                  __ptext5 07C4          __size_of_spread 0047  
+           __size_of_run 002B                  _message 0774                  clrloop0 07F0  
+   end_of_initialization 07FE              ?_ascii2font 005F                  spread@b 0063  
+           __pstringtext 0600               main@sensor 0079           __end_of___wmul 052E  
+         __end_of_spread 0575      start_initialization 07FA   setUpBuffer@currentChar 006F  
+            __end_of_run 07EF      __size_of_ascii2font 0005                 ??___wmul 0064  
+               ??_spread 005F              __pbssCOMMON 0040                ___latbits 0000  
+          ??_setUpBuffer 0066           ___wmul@product 0064                clear_ram0 07EF  
+           ??_ascii2font 005F             setUpBuffer@j 006D          main@last_sensor 0078  
+            __stringbase 0612        ___wmul@multiplier 0060       __end_of_ascii2font 050B  
+    __end_of_setUpBuffer 0600       __end_of__stringtab 0612            __size_of_main 0049  
+     __end_of_matrixFont 0774                 main@argc 0071                 main@argv 0073  
+            _setUpBuffer 0575                stringcode 060A            _buffer_length 005E  
+         _display_buffer 0040           _display_length 077A                 stringtab 0600  

@@ -5,8 +5,8 @@
  * Created on 03 May 2015, 22:53
  */
 
-#define WAND_REST 160       //in ms
-#define WAND_CHAR_DELAY 900  //in us
+#define WAND_REST 100       //in ms
+#define WAND_CHAR_DELAY 500  //in us
 #define _XTAL_FREQ 8000000
 
 #include <stdio.h>
@@ -26,7 +26,7 @@
 
 const uint8_t message[] = "KIRAN";
 
-uint8_t display_length = 0; // length of message in characters
+const uint8_t display_length = 5; // length of message in characters
 uint8_t buffer_length = 0; // length of used part of the display buffer
 uint8_t display_buffer[5*6]; // buffer for LED bit image
 uint8_t ascii2font(uint8_t ascii);
@@ -46,6 +46,9 @@ int main(int argc, char** argv) {
   setUpBuffer();
   sensor = RA0 & 1; // get sensor switch
   last_sensor = sensor;
+  PORTC = 0xFF;
+__delay_ms(999);
+  PORTC = 0x00;
   while(1)
   {
   sensor = RA0 & 1; // read the direction switch
@@ -54,6 +57,12 @@ int main(int argc, char** argv) {
     run();  // display one run of the buffer
     }
     last_sensor = sensor;
+//    if(sensor == 1 ){
+//        PORTC = 0xFF;
+//    }
+//    else{
+//        PORTC = 0x00;
+//    }
   }
     return (EXIT_SUCCESS);
 }
@@ -63,7 +72,6 @@ int main(int argc, char** argv) {
 // *** Other functions ***
 void setUpBuffer(){
 int j, currentChar=0;
-display_length = sizeof(message)-1;
   for(currentChar=0; currentChar<display_length; currentChar++) { // for each letter in message
  // enter text character
    for(j=0; j<6; j++) { // for each column
@@ -89,8 +97,8 @@ return b;
 void run(){ // display the buffer
 int i;
   for(i=0; i<buffer_length; i++){
-     PORTB = display_buffer[i]; // display next column of LEDs
-     __delay_us(WAND_CHAR_DELAY); // sets the width of each character
-     PORTB = 0x0; // blank out all LEDs
+     PORTC = display_buffer[i]; // display next column of LEDs
+     __delay_ms(WAND_CHAR_DELAY); // sets the width of each character
+     PORTC = 0x0; // blank out all LEDs
   }
 }

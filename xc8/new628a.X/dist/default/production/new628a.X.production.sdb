@@ -1,7 +1,7 @@
 [p LITE_MODE AUTOSTATIC PIC14 PICREGULAR PICMID ]
 [d version 1.1 ]
 [d edition pro ]
-[d chip 16F72 ]
+[d chip 16F628A ]
 [d frameptr 6 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\abdiv.c
 [v ___abdiv __abdiv `(c  1 e 1 0 ]
@@ -73,72 +73,118 @@
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\Umul8.c
 [v ___bmul __bmul `(uc  1 e 1 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\pic\eeprom.c
+[v _eecpymem eecpymem `(v  1 e 0 0 ]
+"24
+[v _memcpyee memcpyee `(v  1 e 0 0 ]
+"48
+[v ___eetoc __eetoc `(uc  1 e 1 0 ]
+"56
+[v ___eetoi __eetoi `(ui  1 e 2 0 ]
+"64
+[v ___eetom __eetom `(um  1 e 3 0 ]
+"72
+[v ___eetol __eetol `(ul  1 e 4 0 ]
+"80
+[v ___ctoee __ctoee `(uc  1 e 1 0 ]
+"87
+[v ___itoee __itoee `(ui  1 e 2 0 ]
+"94
+[v ___mtoee __mtoee `(um  1 e 3 0 ]
+"101
+[v ___ltoee __ltoee `(ul  1 e 4 0 ]
+"108
+[v ___eetoft __eetoft `(f  1 e 3 0 ]
+"116
+[v ___eetofl __eetofl `(d  1 e 3 0 ]
+"124
+[v ___fttoee __fttoee `(f  1 e 3 0 ]
+"131
+[v ___fltoee __fltoee `(d  1 e 3 0 ]
 "49 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\pic\ftdiv.c
 [v ___ftdiv __ftdiv `(f  1 e 3 0 ]
-"40 C:\projects\magicwand\xc8\magicwand.X\magicwandmain.c
+"41 C:\projects\magicwand\xc8\new628a.X\main.c
 [v _main main `(i  1 e 2 0 ]
-"73
+"71
 [v _setUpBuffer setUpBuffer `(v  1 e 0 0 ]
-"85
-[v _ascii2font ascii2font `(uc  1 e 1 0 ]
-"89
-[v _spread spread `(uc  1 e 1 0 ]
-"97
-[v _run run `(v  1 e 0 0 ]
-"268 C:\Program Files (x86)\Microchip\xc8\v1.32\include\pic16f72.h
-[v _PORTC PORTC `VEuc  1 e 1 @7 ]
-"961
-[v _TRISA TRISA `VEuc  1 e 1 @133 ]
-"1071
-[v _TRISC TRISC `VEuc  1 e 1 @135 ]
-"1389
-[v _ADCON1 ADCON1 `VEuc  1 e 1 @159 ]
-"1565
-[v _RA0 RA0 `VEb  1 e 0 @40 ]
-"16 C:\projects\magicwand\xc8\magicwand.X\font.h
-[v _matrixFont matrixFont `DCC[59][6]uc  1 e 354 0 ]
-"27 C:\projects\magicwand\xc8\magicwand.X\magicwandmain.c
-[v _message message `DCC[6]uc  1 e 6 0 ]
-"29
-[v _display_length display_length `DCCuc  1 e 1 0 ]
-"30
-[v _buffer_length buffer_length `uc  1 e 1 0 ]
-"31
-[v _display_buffer display_buffer `[30]uc  1 e 30 0 ]
-"40
-[v _main main `(i  1 e 2 0 ]
-{
-"41
-[v main@sensor sensor `uc  1 a 1 26 ]
-[v main@last_sensor last_sensor `uc  1 a 1 25 ]
-"40
-[v main@argc argc `i  1 p 2 18 ]
-[v main@argv argv `*.1*.1uc  1 p 2 20 ]
-"68
-} 0
-"73
-[v _setUpBuffer setUpBuffer `(v  1 e 0 0 ]
-{
-"74
-[v setUpBuffer@currentChar currentChar `i  1 a 2 16 ]
-[v setUpBuffer@j j `i  1 a 2 14 ]
 "83
+[v _ascii2font ascii2font `(uc  1 e 1 0 ]
+"87
+[v _spread spread `(uc  1 e 1 0 ]
+"95
+[v _run run `(v  1 e 0 0 ]
+"219 C:\Program Files (x86)\Microchip\xc8\v1.32\include\pic16f628a.h
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"741
+[v _CMCON CMCON `VEuc  1 e 1 @31 ]
+"940
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"1173
+[v _EEDATA EEDATA `VEuc  1 e 1 @154 ]
+"1179
+[v _EEADR EEADR `VEuc  1 e 1 @155 ]
+"1185
+[v _EECON1 EECON1 `VEuc  1 e 1 @156 ]
+"1222
+[v _EECON2 EECON2 `VEuc  1 e 1 @157 ]
+"1312
+[v _CARRY CARRY `VEb  1 e 0 @24 ]
+"1354
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"1380
+[v _RA1 RA1 `VEb  1 e 0 @41 ]
+"1418
+[v _RD RD `VEb  1 e 0 @1248 ]
+"1480
+[v _TRISA1 TRISA1 `VEb  1 e 0 @1065 ]
+"1536
+[v _WR WR `VEb  1 e 0 @1249 ]
+"1538
+[v _WREN WREN `VEb  1 e 0 @1250 ]
+"16 C:\projects\magicwand\xc8\new628a.X\font.h
+[v _matrixFont matrixFont `DCC[59][6]uc  1 e 354 0 ]
+"29 C:\projects\magicwand\xc8\new628a.X\main.c
+[v _message message `DCC[11]uc  1 e 11 0 ]
+"30
+[v _display_length display_length `DCCuc  1 e 1 0 ]
+"32
+[v _buffer_length buffer_length `uc  1 e 1 0 ]
+"33
+[v _display_buffer display_buffer `[72]uc  1 e 72 0 ]
+"41
+[v _main main `(i  1 e 2 0 ]
+{
+"42
+[v main@sensor sensor `uc  1 a 1 11 ]
+[v main@last_sensor last_sensor `uc  1 a 1 10 ]
+"41
+[v main@argc argc `i  1 p 2 4 ]
+[v main@argv argv `*.1*.1uc  1 p 2 6 ]
+"66
 } 0
-"89
+"71
+[v _setUpBuffer setUpBuffer `(v  1 e 0 0 ]
+{
+"72
+[v setUpBuffer@currentChar currentChar `i  1 a 2 2 ]
+[v setUpBuffer@j j `i  1 a 2 0 ]
+"81
+} 0
+"87
 [v _spread spread `(uc  1 e 1 0 ]
 {
 [v spread@b b `uc  1 a 1 wreg ]
 [v spread@b b `uc  1 a 1 wreg ]
 [v spread@b b `uc  1 a 1 4 ]
-"95
+"93
 } 0
-"85
+"83
 [v _ascii2font ascii2font `(uc  1 e 1 0 ]
 {
 [v ascii2font@ascii ascii `uc  1 a 1 wreg ]
 [v ascii2font@ascii ascii `uc  1 a 1 wreg ]
 [v ascii2font@ascii ascii `uc  1 a 1 0 ]
-"88
+"86
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -150,10 +196,10 @@
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 3 ]
 "53
 } 0
-"97 C:\projects\magicwand\xc8\magicwand.X\magicwandmain.c
+"95 C:\projects\magicwand\xc8\new628a.X\main.c
 [v _run run `(v  1 e 0 0 ]
 {
-"98
-[v run@i i `i  1 a 2 3 ]
-"104
+"96
+[v run@i i `i  1 a 2 1 ]
+"102
 } 0

@@ -10,6 +10,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _setUpBuffer `(v ~T0 @X0 0 ef ]
 "1565 C:\Program Files (x86)\Microchip\xc8\v1.32\include\pic16f72.h
 [v _RA0 `Vb ~T0 @X0 0 e@40 ]
+"268
+[v _PORTC `Vuc ~T0 @X0 0 e@7 ]
 [v F859 `(v ~T0 @X0 1 tf1`ul ]
 "154 C:\Program Files (x86)\Microchip\xc8\v1.32\include\pic.h
 [v __delay `JF859 ~T0 @X0 0 e ]
@@ -20,8 +22,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _spread `(uc ~T0 @X0 0 ef1`uc ]
 "32
 [v _ascii2font `(uc ~T0 @X0 0 ef1`uc ]
-"207 C:\Program Files (x86)\Microchip\xc8\v1.32\include\pic16f72.h
-[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
 [; ;stdio.h: 8: typedef int ptrdiff_t;
 [; ;stdio.h: 9: typedef unsigned size_t;
 [; ;stdio.h: 10: typedef unsigned short wchar_t;
@@ -1427,11 +1427,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;magicwandmain.c: 27: const uint8_t message[] = "KIRAN";
 "29
-[v _display_length `uc ~T0 @X0 1 e ]
+[v _display_length `Cuc ~T0 @X0 1 e ]
 [i _display_length
--> -> 0 `i `uc
+-> -> 5 `i `uc
 ]
-[; ;magicwandmain.c: 29: uint8_t display_length = 0;
+[; ;magicwandmain.c: 29: const uint8_t display_length = 5;
 "30
 [v _buffer_length `uc ~T0 @X0 1 e ]
 [i _buffer_length
@@ -1475,186 +1475,192 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;magicwandmain.c: 48: last_sensor = sensor;
 "48
 [e = _last_sensor _sensor ]
-[; ;magicwandmain.c: 49: while(1)
+[; ;magicwandmain.c: 49: PORTC = 0xFF;
 "49
-[e :U 72 ]
-[; ;magicwandmain.c: 50: {
+[e = _PORTC -> -> 255 `i `uc ]
+[; ;magicwandmain.c: 50: _delay((unsigned long)((999)*(8000000/4000.0)));
 "50
-{
-[; ;magicwandmain.c: 51: sensor = RA0 & 1;
+[e ( __delay (1 -> * -> -> 999 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;magicwandmain.c: 51: PORTC = 0x00;
 "51
-[e = _sensor -> & -> _RA0 `i -> 1 `i `uc ]
-[; ;magicwandmain.c: 52: if( (sensor != last_sensor) && sensor == 0 ){
+[e = _PORTC -> -> 0 `i `uc ]
+[; ;magicwandmain.c: 52: while(1)
 "52
+[e :U 72 ]
+[; ;magicwandmain.c: 53: {
+"53
+{
+[; ;magicwandmain.c: 54: sensor = RA0 & 1;
+"54
+[e = _sensor -> & -> _RA0 `i -> 1 `i `uc ]
+[; ;magicwandmain.c: 55: if( (sensor != last_sensor) && sensor == 0 ){
+"55
 [e $ ! && != -> _sensor `i -> _last_sensor `i == -> _sensor `i -> 0 `i 74  ]
 {
-[; ;magicwandmain.c: 53: _delay((unsigned long)((160)*(8000000/4000.0)));
-"53
-[e ( __delay (1 -> * -> -> 160 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;magicwandmain.c: 54: run();
-"54
+[; ;magicwandmain.c: 56: _delay((unsigned long)((100)*(8000000/4000.0)));
+"56
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;magicwandmain.c: 57: run();
+"57
 [e ( _run ..  ]
-"55
+"58
 }
 [e :U 74 ]
-[; ;magicwandmain.c: 55: }
-[; ;magicwandmain.c: 56: last_sensor = sensor;
-"56
+[; ;magicwandmain.c: 58: }
+[; ;magicwandmain.c: 59: last_sensor = sensor;
+"59
 [e = _last_sensor _sensor ]
-"57
+"66
 }
 [e :U 71 ]
-"49
+"52
 [e $U 72  ]
 [e :U 73 ]
-[; ;magicwandmain.c: 57: }
-[; ;magicwandmain.c: 58: return (0);
-"58
+[; ;magicwandmain.c: 66: }
+[; ;magicwandmain.c: 67: return (0);
+"67
 [e ) -> 0 `i ]
 [e $UE 70  ]
-[; ;magicwandmain.c: 59: }
-"59
+[; ;magicwandmain.c: 68: }
+"68
 [e :UE 70 ]
 }
-"64
+"73
 [v _setUpBuffer `(v ~T0 @X0 1 ef ]
 {
-[; ;magicwandmain.c: 64: void setUpBuffer(){
+[; ;magicwandmain.c: 73: void setUpBuffer(){
 [e :U _setUpBuffer ]
 [f ]
-"65
+"74
 [v _j `i ~T0 @X0 1 a ]
 [v _currentChar `i ~T0 @X0 1 a ]
-[; ;magicwandmain.c: 65: int j, currentChar=0;
+[; ;magicwandmain.c: 74: int j, currentChar=0;
 [e = _currentChar -> 0 `i ]
-[; ;magicwandmain.c: 66: display_length = sizeof(message)-1;
-"66
-[e = _display_length -> - -> # _message `ui -> -> 1 `i `ui `uc ]
-[; ;magicwandmain.c: 67: for(currentChar=0; currentChar<display_length; currentChar++) {
-"67
+[; ;magicwandmain.c: 75: for(currentChar=0; currentChar<display_length; currentChar++) {
+"75
 {
 [e = _currentChar -> 0 `i ]
-[e $U 79  ]
+[e $ < _currentChar -> _display_length `i 76  ]
+[e $U 77  ]
 [e :U 76 ]
 {
-[; ;magicwandmain.c: 69: for(j=0; j<6; j++) {
-"69
+[; ;magicwandmain.c: 77: for(j=0; j<6; j++) {
+"77
 {
 [e = _j -> 0 `i ]
-[e $ < _j -> 6 `i 80  ]
-[e $U 81  ]
-[e :U 80 ]
-{
-[; ;magicwandmain.c: 70: display_buffer[buffer_length] = spread(matrixFont[ascii2font(message[currentChar])][j]);
-"70
-[e = *U + &U _display_buffer * -> _buffer_length `ux -> -> # *U &U _display_buffer `ui `ux ( _spread (1 *U + &U *U + &U _matrixFont * -> ( _ascii2font (1 *U + &U _message * -> -> _currentChar `ui `ux -> -> # *U &U _message `ui `ux `ux -> * -> # *U &U *U &U _matrixFont `ui -> -> 6 `i `ui `ux * -> -> _j `ui `ux -> -> # *U &U *U + &U _matrixFont * -> ( _ascii2font (1 *U + &U _message * -> -> _currentChar `ui `ux -> -> # *U &U _message `ui `ux `ux -> * -> # *U &U *U &U _matrixFont `ui -> -> 6 `i `ui `ux `ui `ux ]
-[; ;magicwandmain.c: 71: buffer_length++;
-"71
-[e ++ _buffer_length -> -> 1 `i `uc ]
-"72
-}
-"69
-[e ++ _j -> 1 `i ]
-[e $ < _j -> 6 `i 80  ]
-[e :U 81 ]
-"72
-}
-"73
-}
-"67
-[e ++ _currentChar -> 1 `i ]
+[e $ < _j -> 6 `i 79  ]
+[e $U 80  ]
 [e :U 79 ]
-[e $ < _currentChar -> _display_length `i 76  ]
-[e :U 77 ]
-"73
-}
-[; ;magicwandmain.c: 72: }
-[; ;magicwandmain.c: 73: }
-[; ;magicwandmain.c: 74: display_buffer[buffer_length] = 0;
-"74
-[e = *U + &U _display_buffer * -> _buffer_length `ux -> -> # *U &U _display_buffer `ui `ux -> -> 0 `i `uc ]
-[; ;magicwandmain.c: 75: }
-"75
-[e :UE 75 ]
+{
+[; ;magicwandmain.c: 78: display_buffer[buffer_length] = spread(matrixFont[ascii2font(message[currentChar])][j]);
+"78
+[e = *U + &U _display_buffer * -> _buffer_length `ux -> -> # *U &U _display_buffer `ui `ux ( _spread (1 *U + &U *U + &U _matrixFont * -> ( _ascii2font (1 *U + &U _message * -> -> _currentChar `ui `ux -> -> # *U &U _message `ui `ux `ux -> * -> # *U &U *U &U _matrixFont `ui -> -> 6 `i `ui `ux * -> -> _j `ui `ux -> -> # *U &U *U + &U _matrixFont * -> ( _ascii2font (1 *U + &U _message * -> -> _currentChar `ui `ux -> -> # *U &U _message `ui `ux `ux -> * -> # *U &U *U &U _matrixFont `ui -> -> 6 `i `ui `ux `ui `ux ]
+[; ;magicwandmain.c: 79: buffer_length++;
+"79
+[e ++ _buffer_length -> -> 1 `i `uc ]
+"80
 }
 "77
+[e ++ _j -> 1 `i ]
+[e $ < _j -> 6 `i 79  ]
+[e :U 80 ]
+"80
+}
+"81
+}
+"75
+[e ++ _currentChar -> 1 `i ]
+[e $ < _currentChar -> _display_length `i 76  ]
+[e :U 77 ]
+"81
+}
+[; ;magicwandmain.c: 80: }
+[; ;magicwandmain.c: 81: }
+[; ;magicwandmain.c: 82: display_buffer[buffer_length] = 0;
+"82
+[e = *U + &U _display_buffer * -> _buffer_length `ux -> -> # *U &U _display_buffer `ui `ux -> -> 0 `i `uc ]
+[; ;magicwandmain.c: 83: }
+"83
+[e :UE 75 ]
+}
+"85
 [v _ascii2font `(uc ~T0 @X0 1 ef1`uc ]
 {
-[; ;magicwandmain.c: 77: uint8_t ascii2font(uint8_t ascii){
+[; ;magicwandmain.c: 85: uint8_t ascii2font(uint8_t ascii){
 [e :U _ascii2font ]
 [v _ascii `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;magicwandmain.c: 78: ascii -= 0x20;
-"78
+[; ;magicwandmain.c: 86: ascii -= 0x20;
+"86
 [e =- _ascii -> -> 32 `i `uc ]
-[; ;magicwandmain.c: 79: return ascii;
-"79
+[; ;magicwandmain.c: 87: return ascii;
+"87
 [e ) _ascii ]
-[e $UE 83  ]
-[; ;magicwandmain.c: 80: }
-"80
-[e :UE 83 ]
+[e $UE 82  ]
+[; ;magicwandmain.c: 88: }
+"88
+[e :UE 82 ]
 }
-"81
+"89
 [v _spread `(uc ~T0 @X0 1 ef1`uc ]
 {
-[; ;magicwandmain.c: 81: uint8_t spread(uint8_t b){
+[; ;magicwandmain.c: 89: uint8_t spread(uint8_t b){
 [e :U _spread ]
 [v _b `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;magicwandmain.c: 82: b = ((b & 0x55) << 1) | ((b >> 1) & 0x55);
-"82
+[; ;magicwandmain.c: 90: b = ((b & 0x55) << 1) | ((b >> 1) & 0x55);
+"90
 [e = _b -> | << & -> _b `i -> 85 `i -> 1 `i & >> -> _b `i -> 1 `i -> 85 `i `uc ]
-[; ;magicwandmain.c: 83: b = ((b & 0x33) << 2) | ((b >> 2) & 0x33);
-"83
+[; ;magicwandmain.c: 91: b = ((b & 0x33) << 2) | ((b >> 2) & 0x33);
+"91
 [e = _b -> | << & -> _b `i -> 51 `i -> 2 `i & >> -> _b `i -> 2 `i -> 51 `i `uc ]
-[; ;magicwandmain.c: 84: b = ((b & 0x0F) << 4) | (b >> 4);
-"84
+[; ;magicwandmain.c: 92: b = ((b & 0x0F) << 4) | (b >> 4);
+"92
 [e = _b -> | << & -> _b `i -> 15 `i -> 4 `i >> -> _b `i -> 4 `i `uc ]
-[; ;magicwandmain.c: 86: return b;
-"86
+[; ;magicwandmain.c: 94: return b;
+"94
 [e ) _b ]
-[e $UE 84  ]
-[; ;magicwandmain.c: 87: }
-"87
-[e :UE 84 ]
+[e $UE 83  ]
+[; ;magicwandmain.c: 95: }
+"95
+[e :UE 83 ]
 }
-"89
+"97
 [v _run `(v ~T0 @X0 1 ef ]
 {
-[; ;magicwandmain.c: 89: void run(){
+[; ;magicwandmain.c: 97: void run(){
 [e :U _run ]
 [f ]
-"90
+"98
 [v _i `i ~T0 @X0 1 a ]
-[; ;magicwandmain.c: 90: int i;
-[; ;magicwandmain.c: 91: for(i=0; i<buffer_length; i++){
-"91
+[; ;magicwandmain.c: 98: int i;
+[; ;magicwandmain.c: 99: for(i=0; i<buffer_length; i++){
+"99
 {
 [e = _i -> 0 `i ]
-[e $U 89  ]
-[e :U 86 ]
+[e $U 88  ]
+[e :U 85 ]
 {
-[; ;magicwandmain.c: 92: PORTB = display_buffer[i];
-"92
-[e = _PORTB *U + &U _display_buffer * -> -> _i `ui `ux -> -> # *U &U _display_buffer `ui `ux ]
-[; ;magicwandmain.c: 93: _delay((unsigned long)((900)*(8000000/4000000.0)));
-"93
-[e ( __delay (1 -> * -> -> 900 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;magicwandmain.c: 94: PORTB = 0x0;
-"94
-[e = _PORTB -> -> 0 `i `uc ]
-"95
+[; ;magicwandmain.c: 100: PORTC = display_buffer[i];
+"100
+[e = _PORTC *U + &U _display_buffer * -> -> _i `ui `ux -> -> # *U &U _display_buffer `ui `ux ]
+[; ;magicwandmain.c: 101: _delay((unsigned long)((500)*(8000000/4000.0)));
+"101
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;magicwandmain.c: 102: PORTC = 0x0;
+"102
+[e = _PORTC -> -> 0 `i `uc ]
+"103
 }
-"91
+"99
 [e ++ _i -> 1 `i ]
-[e :U 89 ]
-[e $ < _i -> _buffer_length `i 86  ]
-[e :U 87 ]
-"95
+[e :U 88 ]
+[e $ < _i -> _buffer_length `i 85  ]
+[e :U 86 ]
+"103
 }
-[; ;magicwandmain.c: 95: }
-[; ;magicwandmain.c: 96: }
-"96
-[e :UE 85 ]
+[; ;magicwandmain.c: 103: }
+[; ;magicwandmain.c: 104: }
+"104
+[e :UE 84 ]
 }
